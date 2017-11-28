@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Model\Admin\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Crypt;
 
 class LoginController extends Controller
 {
