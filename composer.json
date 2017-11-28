@@ -19,7 +19,8 @@
     "autoload": {
         "classmap": [
             "database/seeds",
-            "database/factories"
+            "database/factories",
+            "app/Libs/Vf_code/Code.class.php"
         ],
         "psr-4": {
             "App\\": "app/"
