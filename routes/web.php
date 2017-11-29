@@ -26,6 +26,7 @@ Route::group(['prefix' => 'admin' , 'namespace' => 'admin'],function(){
             Route::get('showadmin','IndexController@show_admin');
             Route::post('dltadmin/{id}','IndexController@dlt_admin')->where(['id' => '[0-9]+']);
         });
+        Route::resource('category','CategoryController');
         Route::get('index','IndexController@index');
         Route::get('info','IndexController@info');
         Route::get('logout','IndexController@logout');
