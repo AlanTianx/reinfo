@@ -73,9 +73,11 @@ class IndexController extends Controller
                 //验证规则
                 $rules = [
                     'us_pwd' => 'required|between:6,20',
+                    'us_name' => 'required'
                 ];
                 //规则信息反馈
                 $message = [
+                    'us_name.required' => '用户名必须',
                     'us_pwd.required' => '新密码不能为空',
                     'us_pwd.between' => '请注意：新密码必须在6～20位之间',
                 ];
@@ -106,7 +108,26 @@ class IndexController extends Controller
 
     public function dlt_admin($id)
     {
-        return $id;
+        if(session('user.us_id')==$id){
+            $data = [
+                'status' => 1,
+                'msg' => '不能删除当前用户'
+            ];
+        }else{
+            if(User::where('us_id',$id)->delete()){
+                $data = [
+                    'status'=>0,
+                    'msg'=>'成功删除'
+                ];
+            }else{
+                $data = [
+                    'status' => 1,
+                    'msg' => '删除失败'
+                ];
+            }
+        }
+
+        return $data;
     }
     public function test()
     {

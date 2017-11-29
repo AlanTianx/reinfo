@@ -54,13 +54,14 @@
                             var pass1 = $('#new_pass').val();
                             var pass2 = $('#new_pass2').val();
                             if(pass1.length<6||pass1.length>12){
-                                alert('密码长度在6-12之间');
+                                layer.msg('密码长度在6-12之间',{icon:5});
+                                //alert('密码长度在6-12之间');
                                 return false;
                             }
                             if (pass1==pass2){
                                 return true;
                             }else {
-                                alert("请保持密码一致");
+                                layer.msg('请保持密码一致',{icon:5});
                                 return false;
                             }
                         }

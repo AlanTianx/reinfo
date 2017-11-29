@@ -71,7 +71,7 @@
                             </td>
                             <td>{{$v->us_time}}</td>
                             <td>
-                                <a href="{{url('admin/dltadmin/'.$v->us_id)}}">删除</a>
+                                <a href="javascript:;" onclick="dlt({{$v->us_id}})">删除</a>
                             </td>
                         </tr>
                     @endforeach
@@ -90,5 +90,23 @@
             </div>
         </div>
     </form>
+    <script>
+        function dlt(id) {
+            layer.confirm('你确定要删除吗',{
+                btn: ['YSE','NO']
+            },function () {
+                $.post('{{url('admin/dltadmin/')}}/'+id,{'_token':'{{csrf_token()}}'},function (data) {
+                    if(data.status==0){
+                        layer.msg(data.msg,{icon:6});
+                        setTimeout(function () {
+                            location.reload();
+                        },500);
+                    }else {
+                        layer.msg(data.msg,{icon:5});
+                    }
+                })
+            });
+        }
+    </script>
     <!--搜索结果页面 列表 结束-->
 @endsection
