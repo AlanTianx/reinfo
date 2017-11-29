@@ -63,4 +63,49 @@ class IndexController extends Controller
         return view('admin.pass');
     }
 
+    public function add_admin(Request $request)
+    {
+        if($input = $request->except(['_token','password_c'])){
+            $u = User::where('us_name',$input['us_name'])->first();
+            if($u){
+                return back()->with('errors','该管理员已存在');
+            }else{
+                //验证规则
+                $rules = [
+                    'us_pwd' => 'required|between:6,20',
+                ];
+                //规则信息反馈
+                $message = [
+                    'us_pwd.required' => '新密码不能为空',
+                    'us_pwd.between' => '请注意：新密码必须在6～20位之间',
+                ];
+                //验证服务
+                $validator = Validator::make($input, $rules, $message);
+                if ($validator->passes())
+                {
+                    $input['us_pwd'] = Crypt::encrypt($input['us_pwd']);
+                    $input['us_time'] = date('Y-m-d H:i:s');
+                    if (User::insert($input))
+                    {
+                        return redirect('admin/showadmin')->with('error','添加成功');
+                    }
+                } else
+                {
+                    return back()->withErrors($validator);
+                }
+            }
+        }
+        return view('admin/addadmin');
+    }
+
+    public function show_admin()
+    {
+        $data = User::all();
+        return view('admin.showadmin',compact('data'));
+    }
+    
+    public function test()
+    {
+        return Crypt::encrypt(123456);
+    }
 }
