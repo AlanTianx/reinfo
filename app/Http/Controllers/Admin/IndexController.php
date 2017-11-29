@@ -100,10 +100,14 @@ class IndexController extends Controller
 
     public function show_admin()
     {
-        $data = User::all();
+        $data = User::orderBy('us_id','asc')->paginate(2);
         return view('admin.showadmin',compact('data'));
     }
-    
+
+    public function dlt_admin($id)
+    {
+        return $id;
+    }
     public function test()
     {
         return Crypt::encrypt(123456);

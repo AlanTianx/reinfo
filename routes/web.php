@@ -24,6 +24,7 @@ Route::group(['prefix' => 'admin' , 'namespace' => 'admin'],function(){
         Route::group(['middleware'=>'super_auth'],function (){
             Route::match(['get','post'],'addadmin','IndexController@add_admin');
             Route::get('showadmin','IndexController@show_admin');
+            Route::get('dltadmin/{id}','IndexController@dlt_admin')->where(['id' => '[0-9]+']);
         });
         Route::get('index','IndexController@index');
         Route::get('info','IndexController@info');
