@@ -30,69 +30,40 @@
     <!--结果集标题与导航组件 结束-->
     
     <div class="result_wrap">
-        <form action="#" method="post">
+        <form action="{{url('admin/category')}}" method="post">
             <table class="add_tab">
                 <tbody>
+                {{csrf_field()}}
                     <tr>
                         <th width="120"><i class="require">*</i>分类：</th>
                         <td>
-                            <select name="">
-                                <option value="">==请选择==</option>
-                                <option value="19">精品界面</option>
-                                <option value="20">推荐界面</option>
+                            <select name="cate_pid">
+                                <option value="0">==顶级分类==</option>
+                                @foreach($data as $v)
+                                    <option value="{{$v->cate_id}}">{{$v->cate_name}}</option>
+                                @endforeach
                             </select>
                         </td>
                     </tr>
+                    {{--<tr>--}}
+                        {{--<th><i class="require">*</i>分类名：</th>--}}
+                        {{--<td>--}}
+                            {{--<input type="text" class="lg" name="">--}}
+                            {{--<p>标题可以写30个字</p>--}}
+                        {{--</td>--}}
+                    {{--</tr>--}}
                     <tr>
-                        <th><i class="require">*</i>标题：</th>
+                        <th>分类名：</th>
                         <td>
-                            <input type="text" class="lg" name="">
-                            <p>标题可以写30个字</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>作者：</th>
-                        <td>
-                            <input type="text" name="">
+                            <input type="text" name="cate_name">
                             <span><i class="fa fa-exclamation-circle yellow"></i>这里是默认长度</span>
                         </td>
                     </tr>
                     <tr>
-                        <th><i class="require">*</i>价格：</th>
+                        <th><i class="require">*</i>排序：</th>
                         <td>
-                            <input type="text" class="sm" name="">元
+                            <input type="text" class="sm" name="cate_order">
                             <span><i class="fa fa-exclamation-circle yellow"></i>这里是短文本长度</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><i class="require">*</i>缩略图：</th>
-                        <td><input type="file" name=""></td>
-                    </tr>
-                    <tr>
-                        <th>单选框：</th>
-                        <td>
-                            <label for=""><input type="radio" name="">单选按钮一</label>
-                            <label for=""><input type="radio" name="">单选按钮二</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>复选框：</th>
-                        <td>
-                            <label for=""><input type="checkbox" name="">复选框一</label>
-                            <label for=""><input type="checkbox" name="">复选框二</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>描述：</th>
-                        <td>
-                            <textarea name="discription"></textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>详细内容：</th>
-                        <td>
-                            <textarea class="lg" name="content"></textarea>
-                            <p>标题可以写30个字</p>
                         </td>
                     </tr>
                     <tr>
