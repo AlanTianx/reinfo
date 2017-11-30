@@ -25,8 +25,8 @@
 			<li>
 				<h3><i class="fa fa-fw fa-clipboard"></i>常用管理</h3>
 				<ul class="sub_menu">
-					<li><a href="{{url('admin/navs/create')}}" target="main"><i class="fa fa-fw fa-plus-square"></i>添加导航</a></li>
-					<li><a href="{{url('admin/navs')}}" target="main"><i class="fa fa-fw fa-list-ul"></i>导航列表</a></li>
+					<li><a href="{{url('admin/adminauth/create')}}" target="main"><i class="fa fa-fw fa-plus-square"></i>权限组添加</a></li>
+					<li><a href="{{url('admin/adminauth')}}" target="main"><i class="fa fa-fw fa-list-ul"></i>权限组列表</a></li>
 					<li><a href="{{url('admin/links/create')}}" target="main"><i class="fa fa-fw fa-plus-square"></i>链接添加</a></li>
 					<li><a href="{{url('admin/links')}}" target="main"><i class="fa fa-fw fa-list-ul"></i>链接列表</a></li>
 				</ul>

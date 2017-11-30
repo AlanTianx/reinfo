@@ -25,6 +25,7 @@
         </div>
         <div class="result_content">
             <div class="short_wrap">
+                <a href="{{url('admin/generation')}}"><i class="fa fa-plus"></i>生成路由列表</a>
                 <a href="{{url('admin/addadmin')}}"><i class="fa fa-plus"></i>新增管理</a>
                 {{--<a href="#"><i class="fa fa-recycle"></i>删除管理</a>--}}
                 <a href="{{url('admin/showadmin')}}"><i class="fa  fa-tasks"></i>查看管理</a>
