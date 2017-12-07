@@ -39,9 +39,9 @@
                         <td>
                             <select name="pid">
                                 <option value="0">==顶级权限组==</option>
-                                {{--@foreach($data as $v)--}}
-                                    {{--<option value="{{$v->id}}">{{$v->name}}</option>--}}
-                                {{--@endforeach--}}
+                                @foreach($data as $v)
+                                    <option value="{{$v->id}}">{{$v->name}}</option>
+                                @endforeach
                             </select>
                         </td>
                     </tr>
@@ -69,8 +69,8 @@
                         <td>
                             <select name="url">
                                 <option value="all">所有权限</option>
-                                @foreach($groups as $v)
-                                    <option value="{{$v}}">{{$v}}</option>
+                                @foreach($list as $v)
+                                    <option value="{{$v->id}}">{{$v->name}}</option>
                                 @endforeach
                             </select>
                         </td>
