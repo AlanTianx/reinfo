@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Model\Admin\Menu;
 use App\Http\Model\Admin\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -13,7 +14,8 @@ class IndexController extends Controller
 {
     public function index()
     {
-        return view('admin.index');
+        $menuinfo = Menu::where('display',1)->orderBy('order','asc')->get();
+        return view('admin.index',compact('menuinfo'));
     }
 
     public function info()
@@ -126,7 +128,6 @@ class IndexController extends Controller
                 ];
             }
         }
-
         return $data;
     }
 

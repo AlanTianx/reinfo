@@ -22,7 +22,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin' , 'namespace' => 'admin'],function(){
     Route::group(['middleware'=>'admin_auth'],function(){
         Route::group(['middleware'=>'super_auth'],function (){
-            //Route::get('generation','Getroutelist@generation');
+            Route::resource('menu','MenuController');
+            Route::post('menu/ajaxorder','MenuController@ajaxorder');
             Route::resource('adminauth','AdminauthController');
             Route::match(['get','post'],'addadmin','IndexController@add_admin');
             Route::get('showadmin','IndexController@show_admin');
