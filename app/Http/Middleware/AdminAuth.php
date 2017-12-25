@@ -19,9 +19,10 @@ class AdminAuth
         if(!session('user')){
             return redirect(route('a_login'))->with('error','登录后操作！');
         }
-//        $data = RouteList::pluck('route');
-////        /dump($data);
-//        if(!$data->contains($request->route()->uri())){
+        $data = RouteList::pluck('route');
+        //dump($data);
+        //dump($request->route()->uri());
+        if(!$data->contains($request->route()->uri())){
 //            if($request->ajax()){
 //                $data = [
 //                    'status' => 0,
@@ -29,8 +30,8 @@ class AdminAuth
 //                ];
 //                return back()->with('data',$data);
 //            }
-//            return redirect(url('admin/info'))->with('error','没有这个路由！');
-//        }
+            return redirect(url('admin/info'))->with('errors','没有这个路由！');
+        }
 //        if(true){
 //            echo 4;
 //        }

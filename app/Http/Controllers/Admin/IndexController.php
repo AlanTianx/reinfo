@@ -14,7 +14,12 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $menuinfo = Menu::where('display',1)->orderBy('order','asc')->get();
+        $menuid = explode(',',session('user.menu_id'));
+        if($menuid==['0']){
+            $menuinfo = Menu::where('display',1)->orderBy('order','asc')->get();
+        }else{
+            $menuinfo = Menu::whereIn('id',$menuid)->where('display',1)->orderBy('order','asc')->get();
+        }
         return view('admin.index',compact('menuinfo'));
     }
 

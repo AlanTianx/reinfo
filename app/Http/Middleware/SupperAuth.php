@@ -15,9 +15,9 @@ class SupperAuth
      */
     public function handle($request, Closure $next)
     {
-        if(session('user.us_name')!='admin'){
-            return back()->with('errors','超级管理员权限使用');
+        if(session('user.us_name')=='admin'){
+            return $next($request);
         }
-        return $next($request);
+        return back()->with('errors','超级管理员权限使用');
     }
 }

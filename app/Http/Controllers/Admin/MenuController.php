@@ -53,8 +53,9 @@ class MenuController extends Controller
     public function update(Request $request,$id)
     {
         $input = $request->except('_token','_method');
+        $input['url'] = $input['url'] ? $input['url'] : '';
         if(Menu::where('id',$id)->update($input)){
-            return redirect('admin/menu');
+            return redirect('admin/menu')->with('error','修改成功');
         }else{
             return back()->with('errors','修改失败，请稍候再试');
         }
