@@ -27,6 +27,7 @@ Route::group(['prefix' => 'admin' , 'namespace' => 'admin'],function(){
             Route::resource('adminauth','AdminauthController');
             Route::match(['get','post'],'addadmin','IndexController@add_admin');
             Route::get('showadmin','IndexController@show_admin');
+            Route::any('pushMenu/{id}','IndexController@pushMenu')->where(['id' => '[0-9]+']);
             Route::post('dltadmin/{id}','IndexController@dlt_admin')->where(['id' => '[0-9]+']);
         });
         Route::resource('routeList','RouteListController');

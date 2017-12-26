@@ -135,4 +135,9 @@ class IndexController extends Controller
         }
         return $data;
     }
+
+    public function pushMenu($id)
+    {
+        return $id;
+    }
 }
