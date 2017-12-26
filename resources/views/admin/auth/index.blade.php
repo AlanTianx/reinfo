@@ -10,8 +10,9 @@
 	<!--结果页快捷搜索框 开始-->
 	<div class="search_wrap">
         <div class="result_wrap">
-            <div class="mark">
-                @if(count($errors)>0)
+            <h3>权限组列表</h3>
+            @if(count($errors)>0)
+                <div class="mark">
                     @if(is_object($errors))
                         @foreach($errors->all() as $error)
                             <p style="color:red">{{$error}}</p>
@@ -19,8 +20,8 @@
                     @else
                         <p style="color:red">{{$errors}}</p>
                     @endif
-                @endif
-            </div>
+                </div>
+            @endif
         </div>
         {{--<form action="" method="post">--}}
             {{--<table class="search_tab">--}}
@@ -48,8 +49,7 @@
             <!--快捷导航 开始-->
             <div class="result_content">
                 <div class="short_wrap">
-                    <a href="{{url('admin/addadmin')}}"><i class="fa fa-plus"></i>新增管理</a>
-                    <a href="javascript:;" onclick="window.onload();"><i class="fa fa-refresh"></i>更新排序</a>
+                    <a href="{{url('admin/adminauth/create')}}"><i class="fa fa-plus"></i>新增权限组</a>
                 </div>
             </div>
             <!--快捷导航 结束-->
@@ -74,6 +74,7 @@
                             <td>{{$v->describe}}</td>
                             <td>{{$v->time}}</td>
                             <td>
+                                <a href="{{url('admin/adminauth/'.$v->id.'/edit')}}">修改</a>
                                 <a href="javascript:;" onclick="dlt({{$v->id}})">删除</a>
                             </td>
                         </tr>
@@ -98,14 +99,18 @@
             layer.confirm('你确定要删除吗',{
                 btn: ['YSE','NO']
             },function () {
-                $.post('{{url('admin/dltadmin/')}}/'+id,{'_token':'{{csrf_token()}}'},function (data) {
+                $.post('{{url('admin/adminauth/')}}/'+id,{'_method':'delete','_token':'{{csrf_token()}}'},function (data) {
                     if(data.status==0){
                         layer.msg(data.msg,{icon:6});
                         setTimeout(function () {
                             location.reload();
                         },500);
                     }else {
-                        layer.msg(data.msg,{icon:5});
+                        if(data.msg){
+                            layer.msg(data.msg,{icon:5});
+                        }else {
+                            layer.msg('无权使用',{icon:5});
+                        }
                     }
                 })
             });

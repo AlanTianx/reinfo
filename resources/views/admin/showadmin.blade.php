@@ -3,15 +3,16 @@
     <!--面包屑导航 开始-->
     <div class="crumb_warp">
         <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
-        <i class="fa fa-home"></i> <a href="{{url('admin/info')}}">首页</a> &raquo; 管理员列表
+        <i class="fa fa-home"></i> <a href="{{url('admin/info')}}">首页</a> &raquo; 管理员管理
     </div>
     <!--面包屑导航 结束-->
 
 	<!--结果页快捷搜索框 开始-->
 	<div class="search_wrap">
         <div class="result_wrap">
-            <div class="mark">
-                @if(count($errors)>0)
+            <h3>管理员列表</h3>
+            @if(count($errors)>0)
+                <div class="mark">
                     @if(is_object($errors))
                         @foreach($errors->all() as $error)
                             <p style="color:red">{{$error}}</p>
@@ -19,26 +20,9 @@
                     @else
                         <p style="color:red">{{$errors}}</p>
                     @endif
-                @endif
-            </div>
+                </div>
+            @endif
         </div>
-        {{--<form action="" method="post">--}}
-            {{--<table class="search_tab">--}}
-                {{--<tr>--}}
-                    {{--<th width="120">选择分类:</th>--}}
-                    {{--<td>--}}
-                        {{--<select onchange="javascript:location.href=this.value;">--}}
-                            {{--<option value="">全部</option>--}}
-                            {{--<option value="http://www.baidu.com">百度</option>--}}
-                            {{--<option value="http://www.sina.com">新浪</option>--}}
-                        {{--</select>--}}
-                    {{--</td>--}}
-                    {{--<th width="70">关键字:</th>--}}
-                    {{--<td><input type="text" name="keywords" placeholder="关键字"></td>--}}
-                    {{--<td><input type="submit" name="sub" value="查询"></td>--}}
-                {{--</tr>--}}
-            {{--</table>--}}
-        {{--</form>--}}
     </div>
     <!--结果页快捷搜索框 结束-->
 
@@ -71,6 +55,8 @@
                             </td>
                             <td>{{$v->us_time}}</td>
                             <td>
+                                <a href="#">分配权限</a>
+                                <a href="#">分配菜单</a>
                                 <a href="javascript:;" onclick="dlt({{$v->us_id}})">删除</a>
                             </td>
                         </tr>

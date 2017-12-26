@@ -3,15 +3,16 @@
     <!--面包屑导航 开始-->
     <div class="crumb_warp">
         <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
-        <i class="fa fa-home"></i> <a href="{{url('admin/info')}}">首页</a> &raquo; 添加权限组
+        <i class="fa fa-home"></i> <a href="{{url('admin/info')}}">首页</a> &raquo; 权限组管理
     </div>
     <!--面包屑导航 结束-->
 
 	<!--结果集标题与导航组件 开始-->
 	<div class="result_wrap">
         <div class="result_title">
-            <h3>快捷操作</h3>
+            <h3>添加权限组</h3>
                 @if(count($errors)>0)
+                <div class="mark">
                     @if(is_object($errors))
                         @foreach($errors->all() as $error)
                             <p style="color:red">{{$error}}</p>
@@ -19,6 +20,7 @@
                     @else
                         <p style="color:red">{{$errors}}</p>
                     @endif
+                </div>
                 @endif
         </div>
         <div class="result_content">
@@ -45,13 +47,6 @@
                             </select>
                         </td>
                     </tr>
-                    {{--<tr>--}}
-                        {{--<th><i class="require">*</i>分类名：</th>--}}
-                        {{--<td>--}}
-                            {{--<input type="text" class="lg" name="">--}}
-                            {{--<p>标题可以写30个字</p>--}}
-                        {{--</td>--}}
-                    {{--</tr>--}}
                     <tr>
                         <th>权限(组)名：</th>
                         <td>
@@ -65,16 +60,43 @@
                         </td>
                     </tr>
                     <tr>
-                        <th><i class="require">*</i>路由地址：</th>
+                        <th><i class="require">*</i>访问授权：</th>
                         <td>
-                            <select name="url">
-                                <option value="all">所有权限</option>
-                                @foreach($list as $v)
-                                    <option value="{{$v->id}}">{{$v->name}}</option>
-                                @endforeach
-                            </select>
+                        @foreach($list as $v)
+                            <label><input name="route_list_id[]" type="checkbox" value="{{$v->id}}">{{$v->name}}</label>
+                        @endforeach
                         </td>
                     </tr>
+                    {{--<tr>--}}
+                        {{--<th><i class="require">*</i>访问授权：</th>--}}
+                        {{--<td>--}}
+                            {{--<select name="url">--}}
+                                {{--<option value="0">选择</option>--}}
+                                {{--@foreach($list as $v)--}}
+                                    {{--<option value="{{$v->id}}">{{$v->name}}</option>--}}
+                                {{--@endforeach--}}
+                            {{--</select>--}}
+                        {{--</td>--}}
+                    {{--</tr>--}}
+                    {{--<tr>--}}
+                        {{--<th><i class="require">*</i>分配到人：</th>--}}
+                        {{--<td>--}}
+                            {{--@foreach($adminList as $v)--}}
+                                {{--<label><input name="us_id[]" type="checkbox" value="{{$v->us_id}}">{{$v->us_name}}</label>--}}
+                            {{--@endforeach--}}
+                        {{--</td>--}}
+                    {{--</tr>--}}
+                    {{--<tr>--}}
+                        {{--<th><i class="require">*</i>分配到人：</th>--}}
+                        {{--<td>--}}
+                            {{--<select name="us_id">--}}
+                                {{--<option value="0">选择</option>--}}
+                                {{--@foreach($adminList as $v)--}}
+                                    {{--<option value="{{$v->us_id}}">{{$v->us_name}}</option>--}}
+                                {{--@endforeach--}}
+                            {{--</select>--}}
+                        {{--</td>--}}
+                    {{--</tr>--}}
                     <tr>
                         <th></th>
                         <td>

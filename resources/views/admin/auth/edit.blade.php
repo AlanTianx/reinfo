@@ -3,14 +3,14 @@
         <!--面包屑导航 开始-->
     <div class="crumb_warp">
         <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
-        <i class="fa fa-home"></i> <a href="{{url('admin/info')}}">首页</a> &raquo; 管理员管理
+        <i class="fa fa-home"></i> <a href="{{url('admin/info')}}">首页</a> &raquo; 权限组管理
     </div>
     <!--面包屑导航 结束-->
 
     <!--结果集标题与导航组件 开始-->
     <div class="result_wrap">
         <div class="result_title">
-            <h3>添加管理</h3>
+            <h3>修改权限组</h3>
             @if(count($errors)>0)
                 <div class="mark">
                     @if(is_object($errors))
@@ -28,44 +28,41 @@
 
     <div class="result_wrap">
 
-        <form method="post" action="" onsubmit="return check()">
+        <form method="post" action="{{url('admin/adminauth/'.$info->id)}}">
+            <input type="hidden" name="_method" value="put">
             {{csrf_field()}}
             <table class="add_tab">
                 <tbody>
                 <tr>
-                    <th width="120"><i class="require">*</i>管理员名：</th>
+                    <th><i class="require">*</i>选择：</th>
                     <td>
-                        <input type="text" name="us_name">
+                        <select name="pid">
+                            <option value="0">==顶级权限组==</option>
+                            @foreach($data as $v)
+                                <option value="{{$v->id}}" @if($info->pid==$v->id) selected @endif>{{$v->name}}</option>
+                            @endforeach
+                        </select>
                     </td>
                 </tr>
                 <tr>
-                    <th><i class="require">*</i>密码：</th>
+                    <th width="120"><i class="require">*</i>权限组名：</th>
                     <td>
-                        <input type="password" name="us_pwd" id="new_pass"> </i>密码6-20位</span>
+                        <input type="text" name="name" value="{{$info->name}}">
                     </td>
                 </tr>
                 <tr>
-                    <th><i class="require">*</i>确认密码：</th>
+                    <th>描述：</th>
                     <td>
-                        <input type="password" name="password_c" id="new_pass2"> </i>再次输入密码</span>
+                        <input type="text" class="lg" name="describe" value="{{$info->describe}}">
                     </td>
-                    <script>
-                        function check(){
-                            var pass1 = $('#new_pass').val();
-                            var pass2 = $('#new_pass2').val();
-                            if(pass1.length<6||pass1.length>12){
-                                layer.msg('密码长度在6-12之间',{icon:5});
-                                //alert('密码长度在6-12之间');
-                                return false;
-                            }
-                            if (pass1==pass2){
-                                return true;
-                            }else {
-                                layer.msg('请保持密码一致',{icon:5});
-                                return false;
-                            }
-                        }
-                    </script>
+                </tr>
+                <tr>
+                    <th><i class="require">*</i>访问授权：</th>
+                    <td>
+                        @foreach($list as $v)
+                            <label><input name="route_list_id[]" @if(in_array($v->id,explode(',',$info->route_list_id))) checked="checked" @endif type="checkbox" value="{{$v->id}}">{{$v->name}}</label>
+                        @endforeach
+                    </td>
                 </tr>
                 <tr>
                     <th></th>

@@ -135,9 +135,4 @@ class IndexController extends Controller
         }
         return $data;
     }
-
-    public function test()
-    {
-        return Crypt::encrypt(123456);
-    }
 }
