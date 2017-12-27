@@ -27,7 +27,6 @@ class AdminauthController extends Controller
 //        });
 //        dd($groups);
         $data = Adminauth::where('pid',0)->get();
-        //$adminList = User::all();
         $list = RouteList::all();
         return view('admin.auth.add',compact(['list','data']));
     }
@@ -58,7 +57,7 @@ class AdminauthController extends Controller
         $input['time'] = date('Y-m-d H:i:s');
         $input['route_list_id'] = trim(implode(',',$input['route_list_id']));
         if(Adminauth::where('id',$id)->update($input)){
-            return redirect('admin/adminauth')->with('errors','修改成功');
+            return redirect('admin/adminauth')->with('errors','修改成功,请注意此权限组中的管理员权限同样发生变化');
         }else{
             return back()->with('errors','修改失败，请稍候再试');
         }

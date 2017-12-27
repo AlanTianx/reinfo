@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Model\Admin\Adminauth;
 use App\Http\Model\Admin\Menu;
 use App\Http\Model\Admin\User;
 use Illuminate\Http\Request;
@@ -15,11 +16,7 @@ class IndexController extends Controller
     public function index()
     {
         $menuid = explode(',',session('user.menu_id'));
-        if($menuid==['0']){
-            $menuinfo = Menu::where('display',1)->orderBy('order','asc')->get();
-        }else{
-            $menuinfo = Menu::whereIn('id',$menuid)->where('display',1)->orderBy('order','asc')->get();
-        }
+        $menuinfo = Menu::whereIn('id',$menuid)->where('display',1)->orderBy('order','asc')->get();
         return view('admin.index',compact('menuinfo'));
     }
 
@@ -109,7 +106,7 @@ class IndexController extends Controller
 
     public function show_admin()
     {
-        $data = User::orderBy('us_id','asc')->paginate(2);
+        $data = User::orderBy('us_id','desc')->paginate(10);
         return view('admin.showadmin',compact('data'));
     }
 
@@ -136,8 +133,41 @@ class IndexController extends Controller
         return $data;
     }
 
-    public function pushMenu($id)
+    public function pushMenu(Request $request,$id)
     {
-        return $id;
+        if($request->post()){
+            $postInfo = $request->only('menu_id');
+            //dd($postInfo);
+            $menu = implode(',',$postInfo['menu_id']);
+            $userInfo = User::where('us_id',$id)->first();
+            $userInfo->menu_id = $menu;
+            if($userInfo->update()){
+                return redirect('admin/showadmin')->with('errors','成功为该管理员分配菜单，在他下次登陆后生效');
+            }else{
+                return back()->with('errors','服务器异常，请稍候');
+            }
+        }else{
+            $list = Menu::all();
+            $info = User::where('us_id',$id)->first();
+            return view('admin.pushMenu',compact(['list','info']));
+        }
+    }
+    public function pushAuth(Request $request,$id)
+    {
+        if($request->post()){
+            $postInfo = $request->only('auth_id');
+            $auth_id = implode(',',$postInfo['auth_id']);
+            $userInfo = User::where('us_id',$id)->first();
+            $userInfo->auth_id = $auth_id;
+            if($userInfo->update()){
+                return redirect('admin/showadmin')->with('errors','成功为该管理员分配权限');
+            }else{
+                return back()->with('errors','服务器异常，请稍候');
+            }
+        }else{
+            $list = Adminauth::all();
+            $info = User::where('us_id',$id)->first();
+            return view('admin.pushAuth',compact(['list','info']));
+        }
     }
 }

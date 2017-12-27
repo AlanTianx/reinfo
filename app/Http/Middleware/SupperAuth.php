@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Model\Admin\RouteList;
+use App\Http\Model\Admin\User;
 use Closure;
 
 class SupperAuth
@@ -15,9 +17,19 @@ class SupperAuth
      */
     public function handle($request, Closure $next)
     {
-        if(session('user.us_name')=='admin'){
-            return $next($request);
+        $auth_id = User::where('us_id',session('user.us_id'))->value('auth_id');
+        $route_group_id = \App\Http\Model\Admin\Adminauth::whereIn('id',explode(',',$auth_id))->pluck('route_list_id');
+        $arr = array();
+        foreach ($route_group_id as $k => $v){
+            $arr[] = explode(',',$v);
         }
-        return back()->with('errors','超级管理员权限使用');
+        $route_group_id = collect($arr);
+        $route_group_id = $route_group_id->collapse();
+        $route_group_id = $route_group_id->unique();
+        $routeList = RouteList::whereIn('id',$route_group_id)->pluck('route');
+        if(!$routeList->contains($request->route()->uri())){
+            return redirect('admin/info')->with('errors','没有使用权限！！！');
+        }
+        return $next($request);
     }
 }

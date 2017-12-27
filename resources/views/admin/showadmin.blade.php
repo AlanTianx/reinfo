@@ -55,8 +55,8 @@
                             </td>
                             <td>{{$v->us_time}}</td>
                             <td>
-                                <a href="#">分配权限</a>
-                                <a href="#">分配菜单</a>
+                                <a href="{{url('admin/pushAuth/'.$v->us_id)}}">分配权限</a>
+                                <a href="{{url('admin/pushMenu/'.$v->us_id)}}">分配菜单</a>
                                 <a href="javascript:;" onclick="dlt({{$v->us_id}})">删除</a>
                             </td>
                         </tr>
