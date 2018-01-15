@@ -8,6 +8,8 @@
     <script type="text/javascript" src="{{asset('admin/style/js/ajaxfileupload.js')}}"></script>
     <script type="text/javascript" src="{{asset('admin/style/js/ch-ui.admin.js')}}"></script>
     <script type="text/javascript" src="{{asset('org/layer/layer.js')}}"></script>
+    <script type="text/javascript" charset="utf-8" src="{{asset('org/UEditor/ueditor.config.js')}}"></script>
+    <script type="text/javascript" charset="utf-8" src="{{asset('org/UEditor/ueditor.all.min.js')}}"> </script>
 </head>
 <body>
 @yield('content')

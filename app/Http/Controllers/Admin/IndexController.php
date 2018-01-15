@@ -137,7 +137,6 @@ class IndexController extends Controller
     {
         if($request->post()){
             $postInfo = $request->only('menu_id');
-            //dd($postInfo);
             $menu = implode(',',$postInfo['menu_id']);
             $userInfo = User::where('us_id',$id)->first();
             $userInfo->menu_id = $menu;

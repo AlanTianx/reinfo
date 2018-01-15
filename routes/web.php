@@ -18,7 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::any('upload' , 'UploadController@upload');
 Route::group(['prefix' => 'admin' , 'namespace' => 'admin'],function(){
     Route::group(['middleware'=>'admin_auth'],function(){
         Route::group(['middleware'=>'super_auth'],function (){
@@ -32,6 +32,8 @@ Route::group(['prefix' => 'admin' , 'namespace' => 'admin'],function(){
             Route::post('dltadmin/{id}','IndexController@dlt_admin')->where(['id' => '[0-9]+']);
             Route::resource('routeList','RouteListController');
             Route::resource('category','CategoryController');
+            Route::get('ajaxChangeOrder/{id}/{order}','CategoryController@ajaxChangeOrder');
+            Route::resource('company','CompanyController');
         });
         Route::get('index','IndexController@index');
         Route::get('info','IndexController@info');
