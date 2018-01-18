@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Model\Admin\Category;
+use App\http\Model\Admin\Company;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
@@ -25,7 +26,7 @@ class CategoryController extends Controller
     {
         if($input = $request->except('_token')){
             $input['cate_time'] = date('Y-m-d H:i:s');
-            if(Category::insert($input)){
+            if(Company::insert($input)){
                 return redirect('admin/category')->with('errors','分类添加成功');
             }else{
                 return back()->with('errors','服务器异常，请稍候再试');

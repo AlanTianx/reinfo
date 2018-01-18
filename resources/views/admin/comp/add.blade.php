@@ -34,70 +34,42 @@
             <table class="add_tab">
                 <tbody>
                 {{csrf_field()}}
-                {{--<tr>--}}
-                    {{--<th><i class="require">*</i>分类名：</th>--}}
-                    {{--<td>--}}
-                        {{--<input type="text" class="lg" name="">--}}
-                        {{--<p>标题可以写30个字</p>--}}
-                    {{--</td>--}}
-                {{--</tr>--}}
                 <tr>
                     <th>公司名称：</th>
                     <td>
-                        <input type="text" name="cate_name">
+                        <input type="text" class="lg" name="com_name">
+                    </td>
+                </tr>
+                <tr>
+                    <th width="120"><i class="require">*</i>公司分类：</th>
+                    <td>
+                        <select name="com_type_id">
+                            <option value="0">==选择分类==</option>
+                            @foreach($data as $v)
+                                <option value="{{$v->cate_id}}">{{$v->cate_name}}</option>
+                            @endforeach
+                        </select>
                     </td>
                 </tr>
                 <tr>
                     <th>标题：</th>
                     <td>
-                        <input type="text" name="cate_title">
+                        <input type="text" class="lg" name="com_title">
                     </td>
                 </tr>
                 <tr>
                     <th>招聘职位：</th>
                     <td>
-                        <input type="text" name="cate_position">
+                        <input type="text" class="lg" name="com_position">
                     </td>
                 </tr>
                 <tr>
                     <th>图片证据：</th>
                     <td>
-                        <input name="cate_img" type="text" value="" id="thumb">
+                        <input name="com_img" type="text" id="thumb">
                         <input id="file_upload" type="file">
                         <input type="hidden" name="_token" id="token" value="{{csrf_token()}}">
                         <a href="javascript:;" onclick="upload_img()">upload</a>
-                        <script>
-                            function upload_img(){
-                                var data = new FormData();
-                                var token = $("#token").val();
-                                var file = document.getElementById('file_upload').files[0];
-                                data.append('myfile',file);
-                                data.append('_token', token);
-                                $.ajax({
-                                    {{--headers: { 'X-CSRF-TOKEN' : '{{csrf_token()}}' },--}}
-                                    url : '{{url('upload')}}',
-                                    type : 'post',
-                                    data : data,
-                                    cache : false,
-                                    contentType : false,
-                                    processData : false,
-                                    dataType : 'json',
-                                    success : function(data) {
-                                        if(data.status=='1'){
-                                            alert('upload success');
-                                            var p = data.file_path;
-                                            $('#file_upload').val(p);
-                                            $('#up_img').attr('src','/uploads/'+p)
-                                        }
-                                    },
-                                    error : function (data) {
-                                        if(data.status=='0'){
-                                            alert('upload failed');
-                                        }
-                                    }
-                                })
-                            }
-                        </script>
                     </td>
                 </tr>
                 <tr>
@@ -106,6 +78,38 @@
                         <img src="" id="up_img" style="max-height: 100px;max-width: 350px" alt="暂无上传">
                     </td>
                 </tr>
+                <script>
+                    function upload_img(){
+                        var data = new FormData();
+                        var token = $("#token").val();
+                        var file = document.getElementById('file_upload').files[0];
+                        data.append('myfile',file);
+                        data.append('_token', token);
+                        $.ajax({
+                            {{--headers: { 'X-CSRF-TOKEN' : '{{csrf_token()}}' },--}}
+                            url : '{{url('upload')}}',
+                            type : 'post',
+                            data : data,
+                            cache : false,
+                            contentType : false,
+                            processData : false,
+                            dataType : 'json',
+                            success : function(data) {
+                                if(data.status=='1'){
+                                    alert('upload success');
+                                    var p = data.file_path;
+                                    $('#thumb').val(p);
+                                    $('#up_img').attr('src','/uploads/'+p)
+                                }
+                            },
+                            error : function (data) {
+                                if(data.status=='0'){
+                                    alert('upload failed');
+                                }
+                            }
+                        })
+                    }
+                </script>
                 <tr>
                     <th>主题内容：</th>
                     <td>

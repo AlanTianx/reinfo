@@ -3,6 +3,7 @@
 namespace App\Http\Model\Admin;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Crypt;
 
 class User extends Model

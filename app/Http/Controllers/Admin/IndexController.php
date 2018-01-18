@@ -7,6 +7,7 @@ use App\Http\Model\Admin\Menu;
 use App\Http\Model\Admin\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
@@ -20,7 +21,7 @@ class IndexController extends Controller
         return view('admin.index',compact('menuinfo'));
     }
 
-    public function info()
+    public function info(Request $request)
     {
         return view('admin.info');
     }

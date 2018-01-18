@@ -34,6 +34,7 @@ Route::group(['prefix' => 'admin' , 'namespace' => 'admin'],function(){
             Route::resource('category','CategoryController');
             Route::get('ajaxChangeOrder/{id}/{order}','CategoryController@ajaxChangeOrder');
             Route::resource('company','CompanyController');
+            Route::resource('filt','FiltController');
         });
         Route::get('index','IndexController@index');
         Route::get('info','IndexController@info');

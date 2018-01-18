@@ -72,7 +72,7 @@
                         <tr>
                             <td class="tc">{{$v->com_id}}</td>
                             <td>
-                                <a href="#">{{$v->com_name}}</a>
+                                <a href={{url('admin/company/'.$v->com_id.'/edit')}}>{{$v->com_name}}</a>
                             </td>
                             <td>{{$v->com_title}}</td>
                             <td>{{$v->com_position}}</td>

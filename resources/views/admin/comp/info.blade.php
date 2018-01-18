@@ -26,14 +26,15 @@
     </div>
     <!--结果集标题与导航组件 结束-->
 
-    <div class="result_wrap" style="text-align: center;background-color: #FFFFCC">
+    <div class="result_wrap" style="text-align: center;">
         <h2 style="color: #003366">{{$info->com_title}}</h2>
         <span style="font-size: 12px;margin-top: 15px; color: #CCCC99">时间:{{$info->com_time}}　作者:{{$info->user_name}}　阅读:{{$info->com_view}}</span>
+        <p>公司:　{{$info->com_name}}</p>
         <div style="margin-top: 50px">
             @if($info->com_img)
-                <img src="{{asset('uploads/'.$info->com_img)}}" alt="图片损坏" style="height: 30%;width: 30%">
+                <img src="{{asset('uploads/'.$info->com_img)}}" alt="图片损坏" style="height: 28%;width: 28%">
             @endif
-            <p>{{$info->com_content}}</p>
+            <p>{!! $info->com_content !!}</p>
         </div>
     </div>
 @endsection
