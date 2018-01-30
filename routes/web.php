@@ -35,7 +35,8 @@ Route::group(['prefix' => 'admin' , 'namespace' => 'admin'],function(){
             Route::get('ajaxChangeOrder/{id}/{order}','CategoryController@ajaxChangeOrder');
             Route::resource('company','CompanyController');
             Route::resource('filt','FiltController');
-            Route::get('audit','AuditController@index');
+            Route::get('audit/{type}','AuditController@index')->where(['type' => '[1-3]+']);
+            Route::post('auditPass','AuditController@auditPass');
         });
         Route::get('index','IndexController@index');
         Route::get('info','IndexController@info');
