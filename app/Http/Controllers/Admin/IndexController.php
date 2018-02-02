@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Validator;
 
 class IndexController extends Controller
@@ -29,6 +30,7 @@ class IndexController extends Controller
     public function logout()
     {
         session(['user'=>null]);
+        Redis::del('auth_user_id');
         return redirect(route('a_login'))->with('error','成功退出');
     }
 
