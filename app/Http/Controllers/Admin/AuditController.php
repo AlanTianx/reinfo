@@ -12,7 +12,8 @@ class AuditController extends Controller
     //
     public function index($type)
     {
-        $list = Audit::select('audit_company.*','users.name as user_name')->leftJoin('users','users_id','=','users.id')->where('type_id',$type)->orderBy('com_id','desc')->paginate(10);
+        $list = Audit::select('audit_company.*','users.name as user_name')->leftJoin('users','users_id','=','users.id')->where('status',$type)->orderBy('com_id','desc')->paginate(10);
+        dd($list);
         return view('admin.audit_comp.index',compact('list','type'));
     }
 

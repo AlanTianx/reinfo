@@ -40,6 +40,8 @@ class CompanyController extends Controller
         ];
         $validator = Validator::make($input,$rules,$message);
         if($validator->passes()){
+            //敏感词汇验证
+
             $input['com_time'] = date('Y-m-d H:i:s');
             $input['com_img'] = isset($input['com_img'])?$input['com_img']:'';
             $input['com_view'] = isset($input['com_view'])?$input['com_view']:0;

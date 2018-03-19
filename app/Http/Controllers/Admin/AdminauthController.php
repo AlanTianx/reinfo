@@ -62,6 +62,7 @@ class AdminauthController extends Controller
             return back()->with('errors','修改失败，请稍候再试');
         }
     }
+
     public function destroy($id)
     {
         if(Adminauth::where('id',$id)->delete()){
