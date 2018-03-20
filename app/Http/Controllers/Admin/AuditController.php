@@ -12,8 +12,7 @@ class AuditController extends Controller
     //
     public function index($type)
     {
-        $list = Audit::select('audit_company.*','users.name as user_name')->leftJoin('users','users_id','=','users.id')->where('status',$type)->orderBy('com_id','desc')->paginate(10);
-        dd($list);
+        $list = Audit::where('status',$type)->orderBy('id','desc')->paginate(5);
         return view('admin.audit_comp.index',compact('list','type'));
     }
 
@@ -21,9 +20,12 @@ class AuditController extends Controller
     {
         $input = $request->input();
         $info = Audit::find($input['id']);
-        $info->type_id = $input['ty'];
+        $info->status = $input['ty'];
+        $info->lastupdtime = date('Y-m-d H:i:s',time());
+
         $comp = Company::find($info->com_id);
         $comp->type_id = $input['ty'];
+
         if($info->update()&&$comp->update()){
             if($input['ty']=='1'){
                 return [

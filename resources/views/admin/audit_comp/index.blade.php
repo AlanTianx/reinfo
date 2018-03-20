@@ -35,23 +35,6 @@
                 @endif
             </div>
         </div>
-        {{--<form action="" method="post">--}}
-            {{--<table class="search_tab">--}}
-                {{--<tr>--}}
-                    {{--<th width="120">选择分类:</th>--}}
-                    {{--<td>--}}
-                        {{--<select onchange="javascript:location.href=this.value;">--}}
-                            {{--<option value="">全部</option>--}}
-                            {{--<option value="http://www.baidu.com">百度</option>--}}
-                            {{--<option value="http://www.sina.com">新浪</option>--}}
-                        {{--</select>--}}
-                    {{--</td>--}}
-                    {{--<th width="70">关键字:</th>--}}
-                    {{--<td><input type="text" name="keywords" placeholder="关键字"></td>--}}
-                    {{--<td><input type="submit" name="sub" value="查询"></td>--}}
-                {{--</tr>--}}
-            {{--</table>--}}
-        {{--</form>--}}
     </div>
     <!--结果页快捷搜索框 结束-->
 
@@ -62,23 +45,17 @@
                 <table class="list_tab">
                     <tr>
                         <th class="tc">ID</th>
-                        <th>公司名称</th>
-                        <th>帖子标题</th>
-                        <th>招聘职位</th>
-                        <th>添加用户</th>
+                        <th>主题内容</th>
                         <th>添加时间</th>
+                        <th>最后修改时间</th>
                         <th>操作</th>
                     </tr>
                     @foreach($list as $v)
                         <tr>
                             <td class="tc">{{$v->id}}</td>
-                            <td>
-                                <a href={{url('admin/company/'.$v->com_id.'/edit')}}>{{$v->com_name}}</a>
-                            </td>
-                            <td>{!! $v->com_title !!}</td>
-                            <td>{!! $v->com_position !!}</td>
-                            <td>{{$v->user_name}}</td>
-                            <td>{{$v->com_time}}</td>
+                            <td  height="200" width="800">{!! $v->content !!}</td>
+                            <td>{{$v->addtime}}</td>
+                            <td>{{$v->lastupdtime}}</td>
                             <td>
                                 @switch($type)
                                     @case('2')
