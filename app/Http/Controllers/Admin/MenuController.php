@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Model\Admin\Adminauth;
 use App\Http\Model\Admin\Menu;
+use App\Http\Model\Admin\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Validator;
 
 class MenuController extends Controller
@@ -57,8 +56,6 @@ class MenuController extends Controller
         $input = $request->except('_token','_method');
         $input['url'] = $input['url'] ? $input['url'] : '';
         if(Menu::where('id',$id)->update($input)){
-            //更新redis
-            Redis::set('auth_user_id',null);
             return redirect('admin/menu')->with('errors','修改成功');
         }else{
             return back()->with('errors','修改失败，请稍候再试');
@@ -68,19 +65,17 @@ class MenuController extends Controller
     public function destroy($id)
     {
         if(Menu::where('id',$id)->delete()){
-            //删除权限组中
-            $list =  Adminauth::pluck('route_list_id','id');
+            //删除用户中存在的菜单
+            $list =  User::pluck('menu_id','id');
             foreach ($list as $k => $value){
                 $arr = explode(',',$value);
                 $key = array_search($id,$arr);
                 if(isset($key)){
                     unset($arr[$key]);
                 }
-                $data['route_list_id'] = implode(',',$arr);
-                Adminauth::where('id',$k)->update($data);
+                $data['menu_id'] = implode(',',$arr);
+                User::where('id',$k)->update($data);
             }
-            //更新redis
-            Redis::set('auth_user_id',null);
             return [
                 'status' => 0,
                 'msg' => '成功删除',

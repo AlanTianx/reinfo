@@ -144,8 +144,6 @@ class IndexController extends Controller
             $userInfo = User::where('us_id',$id)->first();
             $userInfo->menu_id = $menu;
             if($userInfo->update()){
-                //更新redis
-                Redis::set('auth_user_id',null);
                 return redirect('admin/showadmin')->with('errors','成功为该管理员分配菜单，在他下次登陆后生效');
             }else{
                 return back()->with('errors','服务器异常，请稍候');
@@ -165,7 +163,7 @@ class IndexController extends Controller
             $userInfo->auth_id = $auth_id;
             if($userInfo->update()){
                 //更新redis
-                Redis::set('auth_user_id',null);
+                Redis::del('auth_user_id');
                 return redirect('admin/showadmin')->with('errors','成功为该管理员分配权限');
             }else{
                 return back()->with('errors','服务器异常，请稍候');
