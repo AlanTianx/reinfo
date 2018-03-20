@@ -26,7 +26,7 @@ class AuditController extends Controller
         $comp = Company::find($info->com_id);
         $comp->type_id = $input['ty'];
 
-        if($info->update()&&$comp->update()){
+        if($info->update() && $comp->update()){
             if($input['ty']=='1'){
                 return [
                     'status' => 0,
