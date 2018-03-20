@@ -55,7 +55,6 @@ class CompanyController extends Controller
             }else{
                 $filts = Filt::pluck('name');
                 $filts = $filts->toArray();
-
                 $new_filts =array();
                 foreach ($filts as $v){
                     $new_filts[] = '<font color="red">'.$v.'</font>';
