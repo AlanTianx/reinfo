@@ -13,7 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    我的<a>记事本</a>
+                    我的<a href="{{url('notepad')}}">记事本</a>
                 </div>
                 <div id="notepad" class="panel-body">
                     sss
@@ -21,5 +21,10 @@
             </div>
         </div>
     </div>
+    <script>
+        function AjaxGetnotepad() {
+
+        }
+    </script>
 </div>
 @endsection

@@ -2,7 +2,7 @@
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| web Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -20,8 +20,25 @@ Route::get('/test','TestController@index');
 
 Auth::routes();
 
+Route::namespace('web')->group(function (){
+    /**
+     * 记事本路由
+     * */
+    Route::resource('notepad','NotepadController');
+});
+
+/**
+ * 家目录路由
+ * */
 Route::get('/home', 'HomeController@index')->name('home');
+
+/**
+ * 下载路由
+ * */
 Route::any('upload' , 'UploadController@upload');
+/* *
+ *  后台路由
+ * */
 Route::group(['prefix' => 'admin' , 'namespace' => 'admin'],function(){
     Route::group(['middleware'=>'admin_auth'],function(){
         Route::group(['middleware'=>'super_auth'],function (){
