@@ -13,7 +13,7 @@ class RouteListController extends Controller
 {
     public function index()
     {
-        $routeInfo = RouteList::all();
+        $routeInfo = RouteList::orderBy('id','asc')->paginate(10);
         //dd($routeInfo);
         return view('admin.routeList.index',compact('routeInfo'));
     }

@@ -63,7 +63,7 @@
                 </table>
                 <div class="page_list">
                     <ul>
-                        {{--{{$data->links()}}--}}
+                        {{$routeInfo->links()}}
                     </ul>
                     <style>
                         .result_content ul li span{

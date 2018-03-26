@@ -25,6 +25,7 @@ Route::namespace('web')->group(function (){
      * 记事本路由
      * */
     Route::resource('notepad','NotepadController');
+    Route::get('ajaxgetnotepad/{status?}','NotepadController@ajaxgetnotepad');
 });
 
 /**
