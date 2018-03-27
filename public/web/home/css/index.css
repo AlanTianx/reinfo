@@ -1,0 +1,8 @@
+.list-content p{
+    margin: 20px auto;
+    border:2px solid #a1a1a1;
+    border-radius:25px;
+    display: block;
+    width: 80%;
+    text-indent: 20px;
+}

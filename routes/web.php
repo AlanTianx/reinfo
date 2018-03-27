@@ -31,7 +31,7 @@ Route::namespace('web')->group(function (){
 /**
  * 家目录路由
  * */
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home' , 'HomeController@index')->name('home');
 
 /**
  * 下载路由

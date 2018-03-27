@@ -1,6 +1,7 @@
 @extends('layouts.app')
-
 @section('content')
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{url('web/home/css/index.css')}}">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -9,18 +10,19 @@
                         我的记事录
                         <a style="margin-left: 550px" href="{{url('notepad/create')}}"><i class="fa fa-pencil"></i> </a>
                     </div>
-                    <ol class="">
+                    <ol class="list-content">
                         @foreach($list as $v)
                             <li style="margin-top: 10px">
                                 <a>
                                     {{$v->title}}---{{mb_substr($v->content,0,10)}}---{{$v->addtime}}
                                 </a>
                                 @if($v->status==0)
-                                    <p style="display: inline-block;margin-left: 80px">私密</p>
+                                    <span style="display: inline-block;margin-left: 80px">私密</span>
                                 @else
-                                    <p style="display: inline-block;margin-left: 80px">公开</p>
+                                    <span style="display: inline-block;margin-left: 80px">公开</span>
                                 @endif
                             </li>
+                            <p>{{$v->content}}</p>
                         @endforeach
                     </ol>
                     <div class="page_list">
