@@ -12,7 +12,7 @@ class NotepadController extends Controller
     public function index()
     {
         $list = Notepad::orderBy('id','asc')->paginate(10);
-        return view('web.index',compact('list'));
+        return view('web.home.index',compact('list'));
     }
 
     public function ajaxgetnotepad($status = 1)
@@ -26,5 +26,10 @@ class NotepadController extends Controller
             'list' => $info
         );
         return $msg;
+    }
+
+    public function create()
+    {
+        return view('web.home.add');
     }
 }

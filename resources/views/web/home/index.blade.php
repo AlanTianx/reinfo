@@ -5,7 +5,10 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">我的记事录</div>
+                    <div class="panel-heading">
+                        我的记事录
+                        <a style="margin-left: 550px" href="{{url('notepad/create')}}"><i class="fa fa-pencil"></i> </a>
+                    </div>
                     <ol class="">
                         @foreach($list as $v)
                             <li style="margin-top: 10px">
@@ -17,7 +20,6 @@
                                 @else
                                     <p style="display: inline-block;margin-left: 80px">公开</p>
                                 @endif
-
                             </li>
                         @endforeach
                     </ol>

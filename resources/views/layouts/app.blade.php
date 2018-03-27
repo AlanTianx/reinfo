@@ -11,6 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+    <link rel="stylesheet" href="{{asset('admin/style/font/css/font-awesome.min.css')}}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
