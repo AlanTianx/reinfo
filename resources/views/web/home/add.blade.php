@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{url('web/home/css/add.css')}}">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -9,26 +11,26 @@
                         我的记事录
                         <a style="margin-left: 550px" href="{{url('notepad/create')}}"><i class="fa fa-pencil"></i> </a>
                     </div>
-                    <div class="">
+                    <div class="formDate">
                         <form method="post" action="{{url('notepad/')}}">
                             <table>
                                 {{csrf_field()}}
                                 <tr>
-                                    <th>title</th>
-                                    <td><input type="text" name="title" value=""></td>
+                                    <td><input type="text" id="title" name="title" value=""></td>
                                 </tr>
                                 <tr>
-                                    <th>content</th>
                                     <td>
-                                        <textarea>
-
-                                        </textarea>
+                                        <input type="checkbox" id="status" name="status" title="隐私" value="">
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>设为私密记事</th>
                                     <td>
-                                        <input type="checkbox" name="status" value="1">
+                                        <textarea id="content" name="content"></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input id="submit" type="submit" value="保存">
                                     </td>
                                 </tr>
                             </table>

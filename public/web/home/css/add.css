@@ -1,0 +1,47 @@
+.formDate{
+    position: absolute;
+    height: 600px;
+}
+#title{
+    position: relative;
+    top:20px;
+    left: 250px;
+    display: block;
+    height: 30px;
+    width: 200px;
+    background: none;
+    border-left:none;
+    border-right:none;
+    border-top:none;
+    border-bottom:1px solid #ccc;
+    text-align: center;
+    line-height: 30px;
+    outline:none;
+}
+#status{
+    position: relative;
+    top: 40px;
+    left: 400px;
+    display: block;
+    height: 30px;
+    width: 60px;
+}
+#content{
+    resize: none;
+    position: relative;
+    left: 135px;
+    top:50px;
+    width: 400px;
+    height:100px;
+    text-indent: 25px;
+    outline:none;
+}
+#submit{
+    resize: none;
+    position: relative;
+    left: 491px;
+    top:16px;
+    outline:none;
+    color: #00a2d4;
+    border: none;
+}
