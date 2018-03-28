@@ -2,6 +2,7 @@
 @section('content')
     <!-- Styles -->
     <link rel="stylesheet" href="{{url('web/home/css/index.css')}}">
+
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -13,7 +14,7 @@
                     <ol class="list-content">
                         @foreach($list as $v)
                             <li style="margin-top: 10px">
-                                <a>
+                                <a href="javascript:void(0)" class="hideclick">
                                     {{$v->title}}---{{mb_substr($v->content,0,10)}}---{{$v->addtime}}
                                 </a>
                                 @if($v->status==0)
@@ -29,12 +30,6 @@
                         <ul>
                             {{$list->links()}}
                         </ul>
-                        {{--<style>--}}
-                            {{--.result_content ul li span{--}}
-                                {{--font-size: 15px;--}}
-                                {{--padding: 6px 15px;--}}
-                            {{--}--}}
-                        {{--</style>--}}
                     </div>
                 </div>
             </div>
