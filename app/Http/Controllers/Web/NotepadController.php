@@ -12,6 +12,7 @@ class NotepadController extends Controller
     public function index()
     {
         $list = Notepad::orderBy('id','asc')->paginate(10);
+
         return view('web.home.index',compact('list'));
     }
 
