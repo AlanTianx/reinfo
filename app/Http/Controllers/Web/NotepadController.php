@@ -33,4 +33,35 @@ class NotepadController extends Controller
     {
         return view('web.home.add');
     }
+
+    public function store(Request $request)
+    {
+        $input = $request->except('_token');
+        $input['status'] = $input['status'] ?? 0;
+        $input['content'] = trim(implode($input['content'],'<br/>'),'<br/>');
+        $input['addtime'] = date('Y-m-d H:i:s',time());
+        if(Notepad::insert($input)){
+            return redirect('/notepad');
+        }else{
+            return back()->with('errors','服务器异常保存失败！请稍后');
+        }
+    }
+
+    public function edit($id)
+    {
+        $info = Notepad::where('id',$id)->first();
+        $info->content = explode('<br/>',$info->content);
+        return view('web.home.edit',compact('info'));
+    }
+
+    public function update(Request $request,$id)
+    {
+        $input = $request->except('_token','_method');
+        $input['content'] = trim(implode($input['content'],'<br/>'),'<br/>');
+        if(Notepad::where('id',$id)->update($input)){
+            return redirect('notepad');
+        }else{
+            return back()->with('errors','修改失败，请稍候再试');
+        }
+    }
 }

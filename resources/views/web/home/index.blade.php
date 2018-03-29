@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
-    <!-- Styles -->
+    <!-- Styles Script-->
     <link rel="stylesheet" href="{{url('web/home/css/index.css')}}">
-
+    <script type="text/javascript" src="{{ asset('web/home/js/index.js') }}"></script>
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -23,7 +23,7 @@
                                     <span style="display: inline-block;margin-left: 80px">公开</span>
                                 @endif
                             </li>
-                            <p>{{$v->content}}</p>
+                            <p>{!! $v->content !!}<a href="{{url('notepad/'.$v->id.'/edit')}}"><i class="fa fa-pencil"></i> </a></p>
                         @endforeach
                     </ol>
                     <div class="page_list">
