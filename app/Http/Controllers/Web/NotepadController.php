@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Web;
 use App\Http\Model\Web\Notepad;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class NotepadController extends Controller
 {
     //
     public function index()
     {
-        $list = Notepad::orderBy('id','asc')->paginate(10);
+        $list = Notepad::where('users_id',Auth::user()->id)->orderBy('id','asc')->paginate(10);
 
         return view('web.home.index',compact('list'));
     }
@@ -19,7 +20,7 @@ class NotepadController extends Controller
     public function ajaxgetnotepad($status = 1)
     {
         $where = array(
-            'status' => $status,
+            'users_id' => Auth::user()->id,
         );
         $info = Notepad::where($where)->orderBy('id','desc')->limit(1)->get();
         $msg = array(
@@ -40,6 +41,7 @@ class NotepadController extends Controller
         $input['status'] = $input['status'] ?? 0;
         $input['content'] = trim(implode($input['content'],'<br/>'),'<br/>');
         $input['addtime'] = date('Y-m-d H:i:s',time());
+        $input['users_id'] = Auth::user()->id;
         if(Notepad::insert($input)){
             return redirect('/notepad');
         }else{
