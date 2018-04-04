@@ -13,12 +13,13 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
+                background-color: #dceffe;
                 color: #636b6f;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;
+                position:relative;
             }
 
             .full-height {
@@ -62,6 +63,14 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            .footer {
+                position:absolute;bottom:0;width:100%;height:100px;
+            }
+            .footer p {
+                color: #636b6f;
+                font-size: 12px;
+                text-align: center;
+            }
         </style>
     </head>
     <body>
@@ -87,6 +96,13 @@
                     <a target="_blank" href="https://github.com/AlanTianx/reinfo">GitHub</a >
                 </div>
             </div>
+        </div>
+        {{--尾部信息--}}
+        <div class="footer">
+            <footer>
+                <p>Posted by: reinfo</p>
+                <p>Contact information: <a href="mailto:reinfo@example.com">reinfo@example.com</a>.</p>
+            </footer>
         </div>
     </body>
 </html>

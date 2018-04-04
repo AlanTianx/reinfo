@@ -38,7 +38,7 @@ class NotepadController extends Controller
     public function store(Request $request)
     {
         $input = $request->except('_token');
-        $input['status'] = $input['status'] ?? 0;
+        $input['status'] = $input['status'] ?? '0';
         $input['content'] = trim(implode($input['content'],'<br/>'),'<br/>');
         $input['addtime'] = date('Y-m-d H:i:s',time());
         $input['users_id'] = Auth::user()->id;
@@ -64,6 +64,21 @@ class NotepadController extends Controller
             return redirect('notepad');
         }else{
             return back()->with('errors','修改失败，请稍候再试');
+        }
+    }
+
+    public function destroy($id)
+    {
+        if(Notepad::where('id',$id)->delete()){
+            return [
+                'status' => 0,
+                'msg' => '成功删除',
+            ];
+        }else{
+            return [
+                'status' => 1,
+                'msg' => '服务器异常，请稍后再试',
+            ];
         }
     }
 }

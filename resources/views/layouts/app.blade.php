@@ -11,6 +11,16 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+    <style>
+        .footer {
+            position:absolute;bottom:0;width:100%;height:100px;
+        }
+        .footer p {
+            color: #AEAEAE;
+            font-size: 12px;
+            text-align: center;
+        }
+    </style>
     <link rel="stylesheet" href="{{asset('admin/style/font/css/font-awesome.min.css')}}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -73,6 +83,13 @@
         </nav>
 
         @yield('content')
+        {{--尾部信息--}}
+        <div class="footer">
+            <footer>
+                <p>Posted by: reiinfo</p>
+                <p>Contact information: <a href="mailto:reinfo@example.com">reinfo@example.com</a>.</p>
+            </footer>
+        </div>
     </div>
 
     <!-- Scripts -->

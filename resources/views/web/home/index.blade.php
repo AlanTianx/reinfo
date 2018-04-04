@@ -18,10 +18,11 @@
                                     {{$v->title}}---{{mb_substr($v->content,0,10)}}---{{$v->addtime}}
                                 </a>
                                 @if($v->status==0)
-                                    <span style="display: inline-block;margin-left: 80px">私密</span>
+                                    <span style="display: inline-block;color: red;margin-left: 80px">私密</span>
                                 @else
                                     <span style="display: inline-block;margin-left: 80px">公开</span>
                                 @endif
+                                <a style="margin-left: 80px" href="javascript:void(0)" onclick="dlt({{$v->id}})">删除</a>
                             </li>
                             <p>{!! $v->content !!}<a href="{{url('notepad/'.$v->id.'/edit')}}"><i class="fa fa-pencil"></i> </a></p>
                         @endforeach
@@ -31,6 +32,23 @@
                             {{$list->links()}}
                         </ul>
                     </div>
+                    <script>
+                        function dlt(id) {
+                            layer.confirm('你确定要删除吗',{
+                                btn: ['YSE','NO']
+                            },function () {
+                                $.post('{{url('notepad/')}}/'+id,{'_method':'delete','_token':'{{csrf_token()}}'},function (data) {
+                                    if(data.status==0){
+                                        layer.msg(data.msg,{icon:6},function () {
+                                            location.reload();
+                                        });
+                                    }else {
+                                        layer.msg(data.msg,{icon:5});
+                                    }
+                                })
+                            });
+                        }
+                    </script>
                 </div>
             </div>
         </div>

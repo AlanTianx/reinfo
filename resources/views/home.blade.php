@@ -1,7 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        .float-left{
+            height: 200px;
+            width: 80px;
+            background-color: red;
+            float: left;
+        }
+    </style>
 <div class="container">
+    <div class="float-left">
+    </div>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -41,7 +51,6 @@
                                 Infos += "<h3>"+msg.list[i].title+"</h3><span>时间："+msg.list[i].addtime+"</span><p>"+msg.list[i].content+"</p>";
                             }
                         }
-
                         $('#notepad').html(Infos);
                     }
                 }
