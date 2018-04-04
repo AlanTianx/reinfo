@@ -1,17 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <style>
-        .float-left{
-            height: 200px;
-            width: 80px;
-            background-color: red;
-            float: left;
-        }
-    </style>
 <div class="container">
-    <div class="float-left">
-    </div>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -27,9 +17,7 @@
                         <hr />
                     <p style="color: #0F9100;">最新记事</p>
                 </div>
-                <div id="notepad" class="panel-body" style="text-align: center;">
-
-                </div>
+                <div id="notepad" class="panel-body" style="text-align: center;"></div>
             </div>
         </div>
     </div>

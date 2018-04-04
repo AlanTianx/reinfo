@@ -5,7 +5,7 @@
 		<div class="top_left">
 			<div class="logo">Reinfo后台管理</div>
 			<ul>
-				<li><a href="{{url(route('home'))}}" class="active">前台首页</a></li>
+				<li><a href="{{url('/')}}" class="active">前台首页</a></li>
 				<li><a href="{{url('admin/index')}}">管理页</a></li>
 			</ul>
 		</div>

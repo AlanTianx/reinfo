@@ -16,9 +16,19 @@
             position:absolute;bottom:0;width:100%;height:100px;
         }
         .footer p {
-            color: #AEAEAE;
+            color: #AEAEAE;font-size: 12px;text-align: center;
+        }
+        .float-left-nav{
+            display: block;height: 200px;width: 130px;float: left;margin-left: 20px;
+        }
+        .links > a {
+            color: #636b6f;
+            padding: 0 25px;
             font-size: 12px;
-            text-align: center;
+            font-weight: 600;
+            letter-spacing: .1rem;
+            text-decoration: none;
+            text-transform: uppercase;
         }
     </style>
     <link rel="stylesheet" href="{{asset('admin/style/font/css/font-awesome.min.css')}}">
@@ -81,7 +91,15 @@
                 </div>
             </div>
         </nav>
-
+        <div class="float-left-nav">
+            <div class="links">
+                <a href="">开启识别之旅</a>
+                <a href="">开启识别之旅</a>
+                <a href="">开启识别之旅</a>
+                <a href="">开启识别之旅</a>
+                <a target="_blank" href="https://github.com/AlanTianx/reinfo">GitHub</a >
+            </div>
+        </div>
         @yield('content')
         {{--尾部信息--}}
         <div class="footer">
