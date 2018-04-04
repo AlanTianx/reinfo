@@ -92,7 +92,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="">开启识别之旅</a>
+                    <a href="{{url('/search')}}">开启识别之旅</a>
                     <a target="_blank" href="https://github.com/AlanTianx/reinfo">GitHub</a >
                 </div>
             </div>

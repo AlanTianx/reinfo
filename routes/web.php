@@ -26,6 +26,7 @@ Route::namespace('web')->group(function (){
      * */
     Route::resource('notepad','NotepadController');
     Route::get('ajaxgetnotepad/{status?}','NotepadController@ajaxgetnotepad');
+    Route::get('search','SearchController@index');
 });
 
 /**
@@ -43,6 +44,8 @@ Route::any('upload' , 'UploadController@upload');
 Route::group(['prefix' => 'admin' , 'namespace' => 'admin'],function(){
     Route::group(['middleware'=>'admin_auth'],function(){
         Route::group(['middleware'=>'super_auth'],function (){
+            Route::get('config','WebController@index');
+            Route::post('config','WebController@insert');
             Route::resource('menu','MenuController');
             Route::post('menu/ajaxorder','MenuController@ajaxorder');
             Route::resource('adminauth','AdminauthController');
