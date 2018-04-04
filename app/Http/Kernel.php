@@ -59,5 +59,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'admin_auth' => \App\Http\Middleware\AdminAuth::class,
         'super_auth' => \App\Http\Middleware\SupperAuth::class,
+        'web_config' => \App\Http\Middleware\WebMiddleware::class,
     ];
 }

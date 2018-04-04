@@ -11,28 +11,29 @@
 |
 */
 
-Route::get('/' , function () {
-    return view('welcome');
-});
-
-Route::get('/test','TestController@index');
-
-
-Auth::routes();
-
-Route::namespace('web')->group(function (){
+Route::group(['middleware'=>'web_config'],function(){
+    Route::get('/' , function () {
+        return view('welcome');
+    });
+    Auth::routes();
+    Route::namespace('web')->group(function (){
+        /**
+         * 记事本路由
+         * */
+        Route::resource('notepad','NotepadController');
+        Route::get('ajaxgetnotepad/{status?}','NotepadController@ajaxgetnotepad');
+        Route::get('search','SearchController@index');
+    });
     /**
-     * 记事本路由
+     * 家目录路由
      * */
-    Route::resource('notepad','NotepadController');
-    Route::get('ajaxgetnotepad/{status?}','NotepadController@ajaxgetnotepad');
-    Route::get('search','SearchController@index');
+    Route::get('/home' , 'HomeController@index')->name('home');
 });
 
-/**
- * 家目录路由
- * */
-Route::get('/home' , 'HomeController@index')->name('home');
+Route::get('/error',function (){
+    return view('error');
+});
+Route::get('/test','TestController@index');
 
 /**
  * 下载路由
