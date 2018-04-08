@@ -64,12 +64,12 @@ class CompanyController extends Controller
             }
 
             $strLen = mb_strlen($input['com_content'],'utf-8');
-            $input['com_content'] = str_replace($filts,$new_filts,$input['com_content']);
-            if(mb_strlen($input['com_content'],'utf-8') > $strLen){
+            $rep_content = str_replace($filts,$new_filts,$input['com_content']);
+            if(mb_strlen($rep_content,'utf-8') > $strLen){
                 $input['type_id'] = '2';
                 if($ret = Company::insertGetId($input)){
                     $data['com_id'] = $ret;
-                    $data['content'] = $input['com_content'];
+                    $data['content'] = $rep_content;
                     $data['status'] = '2';
                     $data['addtime'] = date('Y-m-d H:i:s',time());
                     $data['lastupdtime'] = date('Y-m-d H:i:s',time());

@@ -22,7 +22,12 @@ Route::group(['middleware'=>'web_config'],function(){
          * */
         Route::resource('notepad','NotepadController');
         Route::get('ajaxgetnotepad/{status?}','NotepadController@ajaxgetnotepad');
-        Route::get('search','SearchController@index');
+        /**
+         * 搜索路由
+         * */
+        Route::get('so','SearchController@index');
+        Route::get('search','SearchController@search');
+        Route::post('ajaxsearch','SearchController@Ajaxsearch');
     });
     /**
      * 家目录路由

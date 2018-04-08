@@ -19,7 +19,7 @@
             color: #AEAEAE;font-size: 12px;text-align: center;
         }
         .float-left-nav{
-            display: block;height: 200px;width: 130px;float: left;margin-left: 20px;
+            display: block;height: 200px;width: 130px;position: absolute;float: left;left: 40px;top: 25%;
         }
         .links > a {
             color: #636b6f;
@@ -93,10 +93,8 @@
         </nav>
         <div class="float-left-nav">
             <div class="links">
-                <a href="{{url('/search')}}">开启识别之旅</a>
-                <a href="">开启识别之旅</a>
-                <a href="">开启识别之旅</a>
-                <a href="">开启识别之旅</a>
+                <a href="{{url('/so')}}">开启识别之旅</a>
+                <a href="{{ url('/home') }}">Home</a>
                 <a target="_blank" href="https://github.com/AlanTianx/reinfo">GitHub</a >
             </div>
         </div>
