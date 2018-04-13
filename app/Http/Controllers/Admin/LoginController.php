@@ -12,9 +12,9 @@ class LoginController extends Controller
     public function index(Request $request)
     {
         $input = $request->input();
-        if($input){
+        if($input) {
             $vf_code = new \Code();
-            if(strtoupper($input['vf_code'])!=$vf_code->get()){
+            if(strtoupper($input['vf_code'])!=$vf_code->get()) {
                 return back()->with('error','验证码错误');
             }
             if(User::Verify_pass($input['user_name'],$input['user_pass'])){
@@ -26,7 +26,8 @@ class LoginController extends Controller
             return view('admin.login');
         }
     }
-    public function vf_code(){
+    public function vf_code()
+    {
         $vf_code = new \Code();
         return $vf_code->make();
     }

@@ -33,13 +33,19 @@ Route::group(['middleware'=>'web_config'],function(){
          * */
         Route::get('info/{id}','SearchController@info')->where(['id' => '[0-9]+']);
         /**
+         * 推荐路由
+         * */
+        Route::get('ajaxgetpush','SearchController@ajaxgetpush');
+        /**
          * 评论路由
          * */
         // Route::get('index','SearchController@search');
         /**
-         * 推荐路由
+         * 报名路由
          * */
-        Route::get('ajaxgetpush','SearchController@ajaxgetpush');
+        Route::get('joinus','JoinController@index');
+        Route::post('joinus','JoinController@add');
+        Route::get('vf_code','JoinController@vf_code');
     });
     /**
      * 家目录路由

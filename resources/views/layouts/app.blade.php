@@ -95,6 +95,7 @@
             <div class="links">
                 <a href="{{url('/so')}}">开启识别之旅</a>
                 <a href="{{ url('/home') }}">Home</a>
+                <a href="{{url('/joinus')}}">Join Us</a>
                 <a target="_blank" href="https://github.com/AlanTianx/reinfo">GitHub</a >
             </div>
         </div>

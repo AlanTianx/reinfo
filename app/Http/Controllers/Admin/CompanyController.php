@@ -44,9 +44,9 @@ class CompanyController extends Controller
         $validator = Validator::make($input,$rules,$message);
         if($validator->passes()){
             $input['com_time'] = date('Y-m-d H:i:s');
-            $input['com_img'] = isset($input['com_img'])?$input['com_img']:'';
-            $input['com_view'] = isset($input['com_view'])?$input['com_view']:0;
-            $input['users_id'] = isset(Auth::user()->id)?Auth::user()->id:1;
+            $input['com_img'] = isset($input['com_img']) ? $input['com_img'] : '';
+            $input['com_view'] = isset($input['com_view']) ? $input['com_view'] : 0;
+            $input['users_id'] = isset(Auth::user()->id) ? Auth::user()->id : 1;
 
             //敏感词汇验证
             if(Redis::exists('filts')){
