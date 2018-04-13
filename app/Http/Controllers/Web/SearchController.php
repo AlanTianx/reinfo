@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Http\Model\Admin\Category;
+use App\Http\Model\Web\Company;
 use App\Http\Model\Web\Search;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -39,5 +41,21 @@ class SearchController extends Controller
             'list' => $list
         );
         return $res;
+    }
+
+    public function ajaxgetpush(Request $request)
+    {
+        $catelist = Category::select('cate_id','cate_name','cate_pid')->orderBy('cate_order','ASC')->limit(6)->get();
+        $list = (new Company())->tree($catelist);
+        $res = array(
+            'code' => 200,
+            'list' => $list
+        );
+        return $res;
+    }
+
+    public function info($id)
+    {
+        echo $id;
     }
 }

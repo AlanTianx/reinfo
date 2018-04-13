@@ -1,0 +1,30 @@
+.info{
+    position: relative;
+}
+.info h3{
+    color: #000033;
+}
+.info h4{
+    color: #222222;
+}
+.info em{
+    margin-left: 40px;
+    color: #9DB832;
+}
+.info a{
+    margin-left: 40px;
+    font-size: 18px
+}
+.info p{
+    margin-left: 40px;
+}
+.finfo{
+    position: relative;
+}
+.zinfo{
+    position: relative;
+    width: 90%;
+    left:20px;
+    word-break: break-all;
+    word-wrap:break-word;
+}

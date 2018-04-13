@@ -28,6 +28,18 @@ Route::group(['middleware'=>'web_config'],function(){
         Route::get('so','SearchController@index');
         Route::get('search','SearchController@search');
         Route::post('ajaxsearch','SearchController@Ajaxsearch');
+        /**
+         * 内容详情路由
+         * */
+        Route::get('info/{id}','SearchController@info')->where(['id' => '[0-9]+']);
+        /**
+         * 评论路由
+         * */
+        // Route::get('index','SearchController@search');
+        /**
+         * 推荐路由
+         * */
+        Route::get('ajaxgetpush','SearchController@ajaxgetpush');
     });
     /**
      * 家目录路由

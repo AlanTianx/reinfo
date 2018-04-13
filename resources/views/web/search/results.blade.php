@@ -2,6 +2,7 @@
 @section('content')
     <!-- Styles Script-->
     <link rel="stylesheet" href="{{url('web/search/css/index.css')}}">
+    <link rel="stylesheet" href="{{url('web/search/css/re.css')}}">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -21,7 +22,7 @@
                         @endif
                         @foreach($list as $v)
                             <h3>
-                                <a href="{{url('')}}">{{$v->com_name}}</a>
+                                <a href="{{url('info/'.$v->com_id)}}">{{$v->com_name}}</a>
                             </h3>
                             <div>
                                 <em style="color: #9DB832">招聘职位：</em>{!! $v->com_position !!}
@@ -33,8 +34,13 @@
                             {{$list->links()}}
                         </ul>
                     </div>
+                </div>
+                <div class="panel panel-default" style="width: 50%;position: absolute;right: -180px">
+                    <div class="panel-heading">热点推荐</div>
+                    <ol id="recommended" class="list-content"></ol>
                     <script>
                         window.onload = function () {
+                            Ajaxrecommended();
                             $('#keywords').bind('input propertychange', function() {
                                 var keywords = $(this).val();
                                 var data = {'keywords':keywords,'_token':'{{csrf_token()}}'};
@@ -58,6 +64,57 @@
                                 });
                             });
                         };
+                        function Ajaxrecommended() {
+                            $.get(
+                                '{{url('/ajaxgetpush')}}',
+                                "{'_token':'{{csrf_token()}}",
+                                function (data) {
+                                    if(data.code == 200){
+                                        var recommended = $('#recommended');
+                                        const list = data.list;
+                                        var html_str = '<div class="info">';
+                                        if(list.length == 0) {
+                                            html_str += '暂无推荐内容';
+                                        }
+                                        for (var i = 0; i < list.length; i++) {
+                                            html_str += '<div class="finfo">' +
+                                                        '<div>' +
+                                                            '<h3>' + list[i].cate_name + '</h3>';
+                                            if(list[i].list.length == 0) {
+                                                html_str += '<p>暂无推荐内容</p>';
+                                            }
+                                            for (var j = 0; j < list[i].list.length; j++) {
+                                                html_str += '<a href="{{url('/info')}}/'+list[i].list[j].com_id+'">' + list[i].list[j].com_title + '</a>' +
+                                                    '            <div>' +
+                                                    '                <em>招聘职位：</em>' + list[i].list[j].com_position +
+                                                    '            </div>';
+                                            }
+                                            html_str += '</div>';
+                                            if(list[i]['z'].length == 0) {
+                                                html_str += '<h4>暂无子分类</h4>';
+                                            }
+                                            for (var k = 0; k < list[i]['z'].length; k++) {
+                                                html_str += '<div class="zinfo">' +
+                                                    '            <h4>' + list[i]['z'][k].cate_name + '</h4>';
+                                                if(list[i]['z'][k]['list'].length == 0) {
+                                                    html_str += '<p>暂无推荐内容</p>';
+                                                }
+                                                for (var m = 0; m < list[i]['z'][k]['list'].length; m++) {
+                                                    html_str += '<a href="{{url('/info')}}/'+list[i]['z'][k]['list'][m].com_id+'">' + list[i]['z'][k]['list'][m].com_title + '</a>' +
+                                                        '            <div>' +
+                                                        '                <em>招聘职位：</em>' + list[i]['z'][k]['list'][m].com_position +
+                                                        '            </div>';
+                                                }
+                                                html_str += '</div>';
+                                            }
+                                            html_str += '</div>';
+                                        }
+                                        html_str += '</div>';
+                                        recommended.html(html_str);
+                                    }
+                                }
+                            );
+                        }
                     </script>
                 </div>
             </div>
