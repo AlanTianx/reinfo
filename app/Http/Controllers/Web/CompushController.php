@@ -1,32 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Web;
 
-use App\Http\Model\Admin\Audit;
 use App\Http\Model\Admin\Category;
-use App\http\Model\Admin\Company;
 use App\Http\Model\Admin\Filt;
+use App\Http\Model\Web\Company;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Validator;
 
-class CompanyController extends Controller
+class CompushController extends Controller
 {
     public function index()
     {
-        $data = Company::select('company.*','users.name as user_name')->leftJoin('users','company.users_id','=','users.id')->orderBy('com_id','desc')->paginate(10);
-        return view('admin.comp.index',compact(['data']));
-    }
-
-    public function create()
-    {
         $data = Category::all();
-        return view('admin.comp.add',compact('data'));
+        return view('web.comp.index', compact('data'));
     }
 
-    public function store(Request $request)
+    public function comppush(Request $request)
     {
         $input = $request->except('_token');
         $rules = [
@@ -46,7 +39,7 @@ class CompanyController extends Controller
             $input['com_time'] = date('Y-m-d H:i:s');
             $input['com_img'] = $input['com_img'] ?? '';
             $input['com_view'] = $input['com_view'] ?? 0;
-            $input['users_id'] = session('user')->us_id ?? 1;
+            $input['users_id'] = Auth::user()->id ?? 3;
 
             //敏感词汇验证
             if(Redis::exists('filts')){
@@ -59,8 +52,8 @@ class CompanyController extends Controller
                 foreach ($filts as $v){
                     $new_filts[] = '<font color="red">'.$v.'</font>';
                 }
-                Redis::set('filts',collect($filts));
-                Redis::set('new_filts',collect($new_filts));
+                Redis::set('filts', collect($filts));
+                Redis::set('new_filts', collect($new_filts));
             }
 
             $strLen = mb_strlen($input['com_content'],'utf-8');
@@ -74,41 +67,19 @@ class CompanyController extends Controller
                     $data['addtime'] = date('Y-m-d H:i:s',time());
                     $data['lastupdtime'] = date('Y-m-d H:i:s',time());
                     Audit::insert($data);
-                    return redirect('admin/company')->with('errors','添加成功');
+                    return redirect('comppush')->with('errors','添加成功');
                 }else{
-                    return back()->with('errors','服务器异常，请稍后再试');
+                    return back()->with('errors','添加错误，请稍后再试');
                 }
             }else{
                 if(Company::insert($input)){
                     return redirect('admin/company')->with('errors','添加成功');
                 }else{
-                    return back()->with('errors','服务器异常，请稍后再试');
+                    return back()->with('errors','添加错误，请稍后再试');
                 }
             }
-
         }else{
             return back()->withErrors($validator);
-        }
-    }
-    
-    public function edit($id)
-    {
-        $info = Company::select('company.*','users.name as user_name')->leftJoin('users','company.users_id','=','users.id')->where('com_id',$id)->first();
-        return view('admin.comp.info')->with('info',$info);
-    }
-
-    public function destroy($id)
-    {
-        if(Company::where('com_id',$id)->delete()){
-            return [
-                'status' => 0,
-                'msg' => '成功删除',
-            ];
-        }else{
-            return [
-                'status' => 1,
-                'msg' => '服务器异常，请稍后再试',
-            ];
         }
     }
 }

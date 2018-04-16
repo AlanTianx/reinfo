@@ -93,6 +93,8 @@ class IndexController extends Controller
                 if ($validator->passes())
                 {
                     $input['us_pwd'] = Crypt::encrypt($input['us_pwd']);
+                    $input['menu_id'] = 0;
+                    $input['auth_id'] = 0;
                     $input['us_time'] = date('Y-m-d H:i:s');
                     if (User::insert($input))
                     {

@@ -40,7 +40,6 @@ class Company extends Model
                 }
             }
         }
-        //dump($tree_list);
         return $tree_list;
     }
 }

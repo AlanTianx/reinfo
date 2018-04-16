@@ -93,9 +93,10 @@
         </nav>
         <div class="float-left-nav">
             <div class="links">
-                <a href="{{url('/so')}}">开启识别之旅</a>
-                <a href="{{ url('/home') }}">Home</a>
-                <a href="{{url('/joinus')}}">Join Us</a>
+                <a href="{{url('/so')}}">开启识别</a>
+                <a href="{{url('/comppush')}}">添加识别</a>
+                <a href="{{ url('/home') }}">我的主页</a>
+                <a href="{{url('/joinus')}}">加入我们</a>
                 <a target="_blank" href="https://github.com/AlanTianx/reinfo">GitHub</a >
             </div>
         </div>
@@ -113,7 +114,5 @@
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
     <script type="text/javascript" src="{{asset('js/jquery.js')}}"></script>
     <script type="text/javascript" src="{{asset('org/layer/layer.js')}}"></script>
-    <script type="text/javascript" charset="utf-8" src="{{asset('org/UEditor/ueditor.config.js')}}"></script>
-    <script type="text/javascript" charset="utf-8" src="{{asset('org/UEditor/ueditor.all.min.js')}}"> </script>
 </body>
 </html>

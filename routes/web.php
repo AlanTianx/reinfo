@@ -37,6 +37,11 @@ Route::group(['middleware'=>'web_config'],function(){
          * */
         Route::get('ajaxgetpush','SearchController@ajaxgetpush');
         /**
+         * 录入信息路由
+         * */
+        Route::get('comppush','CompushController@index');
+        Route::post('comppush','CompushController@comppush');
+        /**
          * 评论路由
          * */
         // Route::get('index','SearchController@search');
@@ -68,6 +73,8 @@ Route::any('upload' , 'UploadController@upload');
 Route::group(['prefix' => 'admin' , 'namespace' => 'admin'],function(){
     Route::group(['middleware'=>'admin_auth'],function(){
         Route::group(['middleware'=>'super_auth'],function (){
+            Route::get('joinus','JoinController@index');
+            Route::post('ajaxjoinus','JoinController@del');
             Route::get('config','WebController@index');
             Route::post('config','WebController@insert');
             Route::resource('menu','MenuController');

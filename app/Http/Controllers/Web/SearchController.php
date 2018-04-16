@@ -56,6 +56,7 @@ class SearchController extends Controller
 
     public function info($id)
     {
-        echo $id;
+        $info = Company::where('com_id',$id)->first();
+        dd($info);
     }
 }
