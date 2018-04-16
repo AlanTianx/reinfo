@@ -43,13 +43,21 @@ class JoinController extends Controller
                 if($validator->passes()) {
                     $input['users_id'] = Auth::User()->id;
                     $input['addtime'] = $input['updtime'] = date('Y-m-d H:i:s');
-                    $input['updbyadmin'] = '';
+                    $input['status'] = 0;
                     unset($input['vf_code']);
-                    //需要查询 看看是否第一次添加
-                    if(Joinus::insert($input)) {
-                        return back()->with('errors', '您已经成功申请');
+                    if(Joinus::where('users_id', Auth::User()->id)->first()) {
+                        if(Joinus::where('users_id', Auth::User()->id)->update($input)) {
+                            return back()->with('errors', '您已经成功申请');
+                        } else {
+                            return back()->with('errors', '信息不完善');
+                        }
                     } else {
-                        return back()->with('errors', '信息不完善');
+                        $input['updbyadmin'] = '';
+                        if(Joinus::insert($input)) {
+                            return back()->with('errors', '您已经成功申请');
+                        } else {
+                            return back()->with('errors', '信息不完善');
+                        }
                     }
                 } else {
                     return back()->withErrors($validator);
