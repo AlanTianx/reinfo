@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2018-04-08 17:58:24
+Date: 2018-04-16 16:22:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,7 +26,7 @@ CREATE TABLE `re_admin_route_list` (
   `time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `route` (`route`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COMMENT='管理的路由列表';
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8 COMMENT='管理的路由列表';
 
 -- ----------------------------
 -- Records of re_admin_route_list
@@ -68,6 +68,8 @@ INSERT INTO `re_admin_route_list` VALUES ('40', '删除词汇', 'admin/filt/{fil
 INSERT INTO `re_admin_route_list` VALUES ('41', '待审核列表', 'admin/audit/{type}', '2018-03-20 01:10:58');
 INSERT INTO `re_admin_route_list` VALUES ('42', '通过/删除验证', 'admin/auditPass', '2018-03-20 06:14:26');
 INSERT INTO `re_admin_route_list` VALUES ('43', '网站配置', 'admin/config', '2018-04-04 08:51:26');
+INSERT INTO `re_admin_route_list` VALUES ('44', '申请管理员列表', 'admin/joinus', '2018-04-16 07:16:23');
+INSERT INTO `re_admin_route_list` VALUES ('45', '处理申请管理员', 'admin/ajaxjoinus', '2018-04-16 07:41:06');
 
 -- ----------------------------
 -- Table structure for re_audit_company
@@ -103,14 +105,13 @@ CREATE TABLE `re_auth_route_group` (
   `pid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '路由组父id',
   `time` datetime NOT NULL COMMENT '//路由组添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='权限路由组';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='权限路由组';
 
 -- ----------------------------
 -- Records of re_auth_route_group
 -- ----------------------------
-INSERT INTO `re_auth_route_group` VALUES ('6', 'BOSS', '所有权限，超管', '1,2,3,4,5,6,7,14,15,16,17,19,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43', '0', '2018-04-04 08:51:35');
-INSERT INTO `re_auth_route_group` VALUES ('7', '经理', '请管理公司分类权限', '4,5,6,7,8,9,10,11,14,15,16,17,19,23,24,26,27,28,29', '0', '2017-12-27 05:30:53');
-INSERT INTO `re_auth_route_group` VALUES ('8', '经理助手', '添加公司性质分类', '', '7', '2017-12-27 05:34:52');
+INSERT INTO `re_auth_route_group` VALUES ('6', 'BOSS', '所有权限，超管', '1,2,3,4,5,6,7,14,15,16,17,19,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45', '0', '2018-04-16 07:41:19');
+INSERT INTO `re_auth_route_group` VALUES ('9', '普通', '申请管理员通过的人', '33,34,35,36,41,42', '0', '2018-04-16 08:05:43');
 
 -- ----------------------------
 -- Table structure for re_category
@@ -123,7 +124,7 @@ CREATE TABLE `re_category` (
   `cate_pid` int(11) unsigned DEFAULT NULL COMMENT '//主分类ID',
   `cate_time` datetime DEFAULT NULL,
   PRIMARY KEY (`cate_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of re_category
@@ -132,6 +133,7 @@ INSERT INTO `re_category` VALUES ('1', '培训公司', '1', '0', '2017-11-29 23:
 INSERT INTO `re_category` VALUES ('2', '正规招聘', '2', '0', '2017-11-29 15:12:43');
 INSERT INTO `re_category` VALUES ('3', '慢处理公司', '3', '2', '2017-11-29 15:20:17');
 INSERT INTO `re_category` VALUES ('4', '招聘骗子', '4', '1', '2017-11-29 15:22:04');
+INSERT INTO `re_category` VALUES ('5', 'test', '5', '1', '2018-04-13 14:53:09');
 
 -- ----------------------------
 -- Table structure for re_company
@@ -151,7 +153,7 @@ CREATE TABLE `re_company` (
   `type_id` enum('1','2','3') NOT NULL DEFAULT '1' COMMENT '//审核状态，1.通过2.待审核3.删除',
   PRIMARY KEY (`com_id`),
   KEY `com_name` (`com_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='招聘信息发布表';
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='招聘信息发布表';
 
 -- ----------------------------
 -- Records of re_company
@@ -162,6 +164,9 @@ INSERT INTO `re_company` VALUES ('9', 'lal', '3', 'lal查理超级慢', 'PHP，p
 INSERT INTO `re_company` VALUES ('10', 'la\'la', '2', '请问请问请问', '请问邱琦雯', '', '<p>请问请问请问请问请问请问<font color=\"red\">猪头</font>请问请问</p>', '0', '2018-04-08 05:38:48', '1', '1');
 INSERT INTO `re_company` VALUES ('11', '请问请问', '3', '请问呃呃呃呃呃呃呃呃呃', '请问呃呃呃呃呃呃呃呃呃', '', '<p>请问谔谔谔谔谔谔谔谔谔谔垃圾&nbsp; 猪头</p>', '0', '2018-04-08 05:42:06', '1', '1');
 INSERT INTO `re_company` VALUES ('12', '请问请问', '3', '请问呃呃呃', '请问', '', '<p>猪头猪头拉拉阿拉蕾</p><p><br/></p>', '0', '2018-04-08 05:43:51', '1', '1');
+INSERT INTO `re_company` VALUES ('13', 'test', '5', 'test是骗子', 'php', '20180416064245574.png', '<p>请问请问请问请问</p>', '0', '2018-04-16 06:43:04', '1', '1');
+INSERT INTO `re_company` VALUES ('14', '111', '4', '888', '222', 'w', '<p>wwwww<br/></p>', '0', '2018-04-16 08:01:30', '1', '1');
+INSERT INTO `re_company` VALUES ('15', '请问', '3', '请问', '请问', '请问', '<p>请问呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃<br/></p>', '0', '2018-04-16 08:19:43', '3', '1');
 
 -- ----------------------------
 -- Table structure for re_config
@@ -202,6 +207,29 @@ INSERT INTO `re_filt` VALUES ('1', '垃圾', '2018-01-18 09:38:02');
 INSERT INTO `re_filt` VALUES ('2', '猪头', '2018-03-20 14:51:22');
 
 -- ----------------------------
+-- Table structure for re_join_us
+-- ----------------------------
+DROP TABLE IF EXISTS `re_join_us`;
+CREATE TABLE `re_join_us` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` char(8) NOT NULL DEFAULT '',
+  `tel` char(11) NOT NULL DEFAULT '',
+  `reason` varchar(255) NOT NULL DEFAULT '',
+  `users_id` int(11) unsigned NOT NULL,
+  `status` int(2) NOT NULL DEFAULT '0' COMMENT '0申请1通过2pass',
+  `addtime` datetime NOT NULL,
+  `updtime` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `updbyadmin` char(8) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `tel` (`tel`,`users_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of re_join_us
+-- ----------------------------
+INSERT INTO `re_join_us` VALUES ('1', 'Alan', '13838182466', '455454', '1', '1', '2018-04-16 01:24:08', '2018-04-16 07:52:56', 'admin');
+
+-- ----------------------------
 -- Table structure for re_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `re_menu`;
@@ -213,7 +241,7 @@ CREATE TABLE `re_menu` (
   `url` varchar(255) NOT NULL DEFAULT '',
   `fid` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of re_menu
@@ -234,6 +262,7 @@ INSERT INTO `re_menu` VALUES ('18', '帖子管理', '1', '3', '', '0');
 INSERT INTO `re_menu` VALUES ('19', '帖子列表', '1', '1', 'admin/company', '18');
 INSERT INTO `re_menu` VALUES ('20', '词汇过滤', '1', '9', 'admin/filt', '18');
 INSERT INTO `re_menu` VALUES ('21', '网站配置', '1', '4', 'admin/config', '1');
+INSERT INTO `re_menu` VALUES ('22', '申请管理列表', '1', '6', 'admin/joinus', '1');
 
 -- ----------------------------
 -- Table structure for re_migrations
@@ -266,7 +295,7 @@ CREATE TABLE `re_password_resets` (
 -- ----------------------------
 -- Records of re_password_resets
 -- ----------------------------
-INSERT INTO `re_password_resets` VALUES ('13838182466@163.com', '$2y$10$LfIxIxLRF4.zqgTUYti3peOG.hhNm1yUUUq6wZdhsSt8I696Rm7fi', '2018-03-21 08:19:19');
+INSERT INTO `re_password_resets` VALUES ('13838182466@163.com', '$2y$10$la/mtV0HpndNCOYd7IzNcetLSCE1NpD3GGi9L3bPXg5xWAJEmGTMy', '2018-04-11 08:06:42');
 
 -- ----------------------------
 -- Table structure for re_user
@@ -281,12 +310,13 @@ CREATE TABLE `re_user` (
   `us_time` datetime NOT NULL,
   PRIMARY KEY (`us_id`),
   UNIQUE KEY `us_name` (`us_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='后台管理员表';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='后台管理员表';
 
 -- ----------------------------
 -- Records of re_user
 -- ----------------------------
-INSERT INTO `re_user` VALUES ('8', 'admin', 'eyJpdiI6InpSRXRMQ3pUc2Z1VjBtYVVCeHZJSEE9PSIsInZhbHVlIjoiSHlxZzg4MUVJeUR6KzBTcDFxV2w5UT09IiwibWFjIjoiYzEzMmUyNDUxNjBiMmU5MWNmMDFjZmQxNGM0NzQyMmE2MTMyYjM3MWIyOWY3YzdmOTZmMzg3ZWI2NTA0MGEyMiJ9', '6', '1,2,3,4,5,6,11,13,14,15,16,17,18,19,20,21', '2017-11-29 06:04:10');
+INSERT INTO `re_user` VALUES ('8', 'admin', 'eyJpdiI6InpSRXRMQ3pUc2Z1VjBtYVVCeHZJSEE9PSIsInZhbHVlIjoiSHlxZzg4MUVJeUR6KzBTcDFxV2w5UT09IiwibWFjIjoiYzEzMmUyNDUxNjBiMmU5MWNmMDFjZmQxNGM0NzQyMmE2MTMyYjM3MWIyOWY3YzdmOTZmMzg3ZWI2NTA0MGEyMiJ9', '6', '1,2,3,4,5,6,11,13,14,15,16,17,18,19,20,21,22', '2017-11-29 06:04:10');
+INSERT INTO `re_user` VALUES ('9', 'Alan', 'eyJpdiI6IndKZE9ZdENYRithZ3IycnBJTWxxU0E9PSIsInZhbHVlIjoiUDZWSldyOHpcLzhPNndaMlRtcWFqRmc9PSIsIm1hYyI6ImViZWRjOWQ0YWIzODM4OTNiYWU2YjQ5OWZhOWMyMmZmZGRlMzcxYzVkYTkxNjgzZDJhMTE0NDMxODNjMGU1M2YifQ==', '9', '14,15,16,17,18,19', '2018-04-16 08:08:50');
 
 -- ----------------------------
 -- Table structure for re_users
@@ -302,13 +332,14 @@ CREATE TABLE `re_users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of re_users
 -- ----------------------------
-INSERT INTO `re_users` VALUES ('1', '官方认证', '13838182466@163.com', '$2y$10$hdj60DvxbtWDkSTUKlOgIOTGc7Nj2LsMsXtFVIpimEZVj0qW0uMG.', 'iTN6Yy5JHroi6w6NTJ4ibEczUt0bhEA4fnvRlIgvWrLP1Bfo8xh4dFgBJXJR', '2018-03-21 08:02:12', '2018-03-21 08:02:12');
-INSERT INTO `re_users` VALUES ('2', 'Tian', '1157432388@qq.com', '$2y$10$azsHBUcDgnK6iM3bNY7szuCck/h588vMaFvxkqIwsWiZfmg1eFRIS', '9n28PFfmrO3vUveQOPUutDTirsy3R6hZkkxDFQGNJpQSHo34gzVSuizgjSaQ', '2018-03-21 08:30:53', '2018-03-21 09:07:51');
+INSERT INTO `re_users` VALUES ('1', '官方认证', '13838182466@163.com', '$2y$10$hdj60DvxbtWDkSTUKlOgIOTGc7Nj2LsMsXtFVIpimEZVj0qW0uMG.', 'RPlHBBfGLAU6ErYGpNuO17gYANwFKWwNcuRpScFiwc2Ip08x0kqsBpQpHRrx', '2018-03-21 08:02:12', '2018-03-21 08:02:12');
+INSERT INTO `re_users` VALUES ('2', 'Tian', '1157432388@qq.com', '$2y$10$dQ.8SIQE3XQeoBoGdIGk4OjD2D2ktAiln69J8QxZ8HNkE8gao1cQm', 'xCAOHKjMznqLJ96YlZQ1YI92gMgtBR3BgCZ59suYeZtWNkn3693iLueBceok', '2018-03-21 08:30:53', '2018-04-11 08:13:05');
+INSERT INTO `re_users` VALUES ('3', 'guest', 'guest', 'guest', 'guest', '2018-04-16 16:17:48', '2018-04-16 16:17:50');
 
 -- ----------------------------
 -- Table structure for re_users_notepad
