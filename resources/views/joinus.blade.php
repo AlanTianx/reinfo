@@ -77,7 +77,7 @@
                                         电话：
                                     </label>
                                     <input name="tel" value="">
-                                    <i>请输入有效电话</i>
+                                    <i>请输入有效电话!</i>
                                 </div>
                                 <div>
                                     <label>
