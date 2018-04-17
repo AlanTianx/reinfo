@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    @if($info)
+                    @if(isset($info))
                         <div class="panel-heading">申请信息：</div>
                     @else
                         <div class="panel-heading">请认真填写以下信息</div>
@@ -27,7 +27,7 @@
                                 <p style="color:red">{{$errors}}</p>
                             @endif
                         @endif
-                        @if ($info && (strtotime($info->addtime) + strtotime("+3 week") > time()))
+                        @if (isset($info) && (strtotime($info->addtime) + strtotime("+3 week") > time()))
                             @if($info->status == 1)
                                 <div>
                                     <p>您已经成功成为本站的管理员！无需重复申请！</p>
@@ -77,7 +77,7 @@
                                         电话：
                                     </label>
                                     <input name="tel" value="">
-                                    <i>请输入有效电话</i>
+                                    <i>请输入有效电话!</i>
                                 </div>
                                 <div>
                                     <label>
