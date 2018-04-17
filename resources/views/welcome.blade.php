@@ -92,7 +92,10 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{url('/so')}}">开启识别之旅</a>
+                    <a href="{{url('/so')}}">开启识别</a>
+                    <a href="{{url('/comppush')}}">添加识别</a>
+                    <a href="{{ url('/home') }}">我的主页</a>
+                    <a href="{{url('/joinus')}}">加入我们</a>
                     <a target="_blank" href="https://github.com/AlanTianx/reinfo">GitHub</a >
                 </div>
             </div>
