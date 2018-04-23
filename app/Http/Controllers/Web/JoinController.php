@@ -10,11 +10,12 @@ use Illuminate\Support\Facades\Validator;
 
 class JoinController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        if (!Auth::User()) {
-            return redirect(route('login'));
-        }
         if( $info = Joinus::where('users_id',Auth::User()->id)->first()) {
             return view('joinus', compact('info'));
         }

@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 class NotepadController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $list = Notepad::where('users_id',Auth::user()->id)->orderBy('id','asc')->paginate(10);
