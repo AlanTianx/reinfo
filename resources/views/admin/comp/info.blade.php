@@ -3,7 +3,7 @@
         <!--面包屑导航 开始-->
     <div class="crumb_warp">
         <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
-        <i class="fa fa-home"></i> <a href="{{url('admin/info')}}">首页</a> &raquo; 帖子管理
+        <i class="fa fa-home"></i> <a href="{{url('admin/info')}}">首页</a> &raquo; 信息管理
     </div>
     <!--面包屑导航 结束-->
 

@@ -50,7 +50,7 @@ class NotepadController extends Controller
         if(Notepad::insert($input)){
             return redirect('/notepad');
         }else{
-            return back()->with('errors','服务器异常保存失败！请稍后');
+            return back()->with('errors','保存失败！请稍后再试');
         }
     }
 
