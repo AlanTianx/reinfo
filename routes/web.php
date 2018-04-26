@@ -42,10 +42,6 @@ Route::group(['middleware'=>'web_config'],function(){
         Route::get('comppush','CompushController@index');
         Route::post('comppush','CompushController@comppush');
         /**
-         * 评论路由
-         * */
-        // Route::get('index','SearchController@search');
-        /**
          * 报名路由
          * */
         Route::get('joinus','JoinController@index');
