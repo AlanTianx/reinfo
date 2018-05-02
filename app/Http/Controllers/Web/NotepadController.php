@@ -17,7 +17,7 @@ class NotepadController extends Controller
 
     public function index()
     {
-        $list = Notepad::where('users_id',Auth::user()->id)->orderBy('id','asc')->paginate(10);
+        $list = Notepad::where('users_id',Auth::user()->id)->orderBy('id','desc')->paginate(10);
 
         return view('web.home.index',compact('list'));
     }

@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default" style="position: absolute;left: -180px">
+                <div class="panel panel-default" style="position: absolute;left: -23%">
                     <div class="panel-heading">
                         <div>
                             <form action="{{url('search')}}" method="get">
@@ -35,7 +35,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="panel panel-default" style="width: 50%;position: absolute;right: -180px">
+                <div class="panel panel-default" style="width: 50%;position: absolute;right: -23%">
                     <div class="panel-heading">热点推荐</div>
                     <ol id="recommended" class="list-content"></ol>
                     <script>
@@ -51,7 +51,7 @@
                                         var len = data.list.length;
                                         var s_hd_height = 25*len;
                                         for(var i=0; i<len; i++){
-                                            str += '<a href="{{url('')}}">'+data.list[i].com_name+'</a>';
+                                            str += '<a href="{{url('info')}}/'+data.list[i].com_id+'">'+data.list[i].com_name+'</a>';
                                         }
                                         if(len>0){
                                             s_hd.height(s_hd_height);

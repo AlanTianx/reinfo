@@ -21,12 +21,7 @@ class Search extends Model
 
     public function likesearch($keywords)
     {
-        $where = array(
-            ['com_name','like',"%$keywords%"],
-            ['com_title','like',"%$keywords%"],
-            ['com_content','like',"%$keywords%"]
-        );
-        $list = $this->where('type_id',1)->where(function ($query) use($keywords){
+        $list = $this->where('type_id',1)->where(function ($query) use ($keywords){
                                                         $query->orWhere('com_name','like',"%$keywords%")
                                                             ->orWhere('com_title','like',"%$keywords%")
                                                             ->orWhere('com_content','like',"%$keywords%");

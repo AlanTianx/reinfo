@@ -38,7 +38,7 @@
                         var len = data.list.length;
                         var s_hd_height = 25*len;
                         for(var i=0; i<len; i++){
-                            str += '<a href="{{url('')}}">'+data.list[i].com_name+'</a>';
+                            str += '<a href="{{url('info')}}/'+data.list[i].com_id+'">'+data.list[i].com_name+'</a>';
                         }
                         if(len>0){
                             s_hd.height(s_hd_height);

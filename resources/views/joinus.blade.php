@@ -42,7 +42,7 @@
                             @endif
                             @if($info->status == 0)
                                 <div>
-                                    <p>您已经申请过了，我们会在15个工作日内打电话联系您！请静候佳音!</p>
+                                    <p>您已经申请过了，我们会在<span style="color: #0F9100;font-weight: 800">15个工作日</span>内打电话联系您！请静候佳音!</p>
                                 </div>
                                 <div>
                                     <p>申请人：{{$info->name}}</p>
