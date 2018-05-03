@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Http\Model\Admin\Audit;
 use App\Http\Model\Admin\Category;
 use App\Http\Model\Admin\Filt;
 use App\Http\Model\Web\Company;

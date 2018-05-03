@@ -33,7 +33,7 @@
                     if(msg.status == 'success'){
                         var Infos = '';
                         if(msg.list.length<=0){
-                            Infos = '<p>您暂时没有记事集，您可以点击<a href="{{url("notepad")}}">记事本</a>制作记事集</p>';
+                            Infos = '<p>您暂时没有记事集，您可以点击<a href="{{url("notepad/create")}}">记事本</a>制作记事集</p>';
                         }else {
                             for (var i=0;i < msg.list.length; i++){
                                 Infos += "<h3>"+msg.list[i].title+"</h3><span>时间："+msg.list[i].addtime+"</span><p>"+msg.list[i].content+"</p>";
