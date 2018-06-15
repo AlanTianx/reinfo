@@ -57,6 +57,8 @@ class SearchController extends Controller
     public function info($id)
     {
         $info = Company::where('com_id',$id)->first();
-        dd($info);
+        $info->com_view++;
+        $info->update();
+        return view('web.search.info', compact('info'));
     }
 }

@@ -43,7 +43,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>单选框：</th>
+                    <th>网站状态：</th>
                     <td>
                         <label><input type="radio" @if($info['is_open']==1) checked @endif name="is_open" value="1">开启</label>
                         <label><input type="radio" @if($info['is_open']==0) checked @endif  name="is_open" value="0">关闭</label>
