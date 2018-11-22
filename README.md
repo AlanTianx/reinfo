@@ -13,3 +13,5 @@ laravel的论坛
     修改方法boot() 添加 Schema::defaultStringLength(191);
 Laravel 更换服务器需要重新生成app_key
         _命令：php artisan key:generate_
+        之后要把Crypt生成的密钥重新生成要不然解密无法成功。
+        Laravel的Crypt在项目迁移中不太友好，可以考虑使用sha1加密
