@@ -11,3 +11,5 @@ laravel的论坛
     在数据库迁移时会出错Syntax error or access violation: 1071 Specified key was too long; max key length is 1000 bytes
     需要：：编辑：\app\Providers \AppServiceProvider.php
     修改方法boot() 添加 Schema::defaultStringLength(191);
+Laravel 更换服务器需要重新生成app_key
+        _命令：php artisan key:generate_
