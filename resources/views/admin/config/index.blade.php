@@ -11,7 +11,7 @@
     <div class="result_wrap">
         <div class="result_title">
             <h3>web配置</h3>
-            @if(count($errors)>0)
+            @if(is_array($errors)&&count($errors)>0)
                 @if(is_object($errors))
                     @foreach($errors->all() as $error)
                         <p style="color:red">{{$error}}</p>
